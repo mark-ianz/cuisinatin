@@ -309,7 +309,7 @@
         left: 0;
         bottom: 0;
         width: 85vw;
-        max-width: 500px
+        max-width: 500px;
         padding: 10px 20px 10px 20px;
         z-index: 300;
         align-items: start;
