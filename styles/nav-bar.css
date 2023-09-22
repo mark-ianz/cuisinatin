@@ -1,0 +1,426 @@
+/* NAVIGATION MAIN CONTAINER */
+.navs {
+    position: relative;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgb(26, 26, 26);
+    padding: 10px;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+
+/* HEADER NAVIGATION */
+/* (TOP LEFT CONTAINER) */
+.header-navigation {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 95vw;
+    justify-content: space-between;
+    max-width: 1240px;
+}
+
+.top-left-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.hamburger-menu-container {
+    display: none;
+}
+
+.hamburger-menu {
+    width: 30px;
+    filter: invert(1);
+    cursor: pointer;
+}
+
+.logo {
+    width: 120px;
+    cursor: pointer;
+}
+
+
+/* HEADER NAVIGATION */
+/* (TOP RIGHT CONTAINER) */
+.top-right-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    z-index: 100;
+}
+
+
+/* SEARCH CONTAINER AND RESPONSIVE SEARCH CONTAINER */
+.search-container,.sidebar-search-bar-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-grow: 1;
+}
+
+.search-bar,.sidebar-search-bar {
+    height: 40px;
+    border-radius: 30px;
+    border-style: none;
+    outline: none;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 25vw;
+    font-size: 18px;
+    flex-grow: 1;
+}
+
+.search-button,.sidebar-search-button,.responsive-search-button {
+    background: none;
+    border-style: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 200ms;
+}
+
+.search-image,.sidebar-search-image,.responsive-search-image  {
+    width: 27px;
+    filter: invert(1);
+}
+
+.search-button:hover,.responsive-search-button:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.responsive-search-button, .responsive-search-image {
+    display: none;
+}
+
+
+/* LOGIN CONTAINER */
+.login-button {
+    padding: 8.5px 40px 8.5px 40px;
+    border-radius: 36px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0);
+    border-width: 2px;
+    font-family: Roboto;
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+    background: none;
+    border-color: white;
+    cursor: pointer;
+    transition: 150ms;
+}
+
+.login-button:hover {
+    background-color: white;
+    color: black;
+}
+
+
+/* SIDEBAR NAVIGATIONS */
+.sidebar-container {
+    color: white;
+    font-size: 16px;
+    z-index: 100;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 95vw;
+    max-width: 1240px;
+}
+
+
+/* SIDEBAR MAIN NAVIGATION CONTAINER*/
+.sidebar-content {
+    display: flex;
+    gap: 20px;
+}
+
+
+/* NAVIGATION CONTAINER #1 (LOGO) */
+.sidebar-logo-container {
+    display: none;
+    width: 100%;
+    justify-content: center;
+}
+
+.sidebar-logo {
+    width: 120px;
+}
+
+
+/* NAVIGATION CONTAINER #2 (SEARCH BAR) */
+.search-nav-text {
+    font-family: Roboto Condensed;
+}
+
+.sidebar-search-container {
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.sidebar-search-button {
+    width: 47px;
+    height: 42px;
+}
+
+.sidebar-search-button:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-search-image {
+    filter: none;
+    width: 20px;
+}
+
+.sidebar-search-bar {
+    border-color: rgb(0, 0, 0);
+    border-style: solid;
+    border-width: 1px;
+    font-size: 14px;
+}
+
+
+/* NAVIGATION CONTAINER #3 (NAVIGATIONS LIST) */
+.navigations {
+    display: flex;
+    flex-direction: row;
+    width: 95vw;
+    justify-content: space-between;
+    max-width: 1240px;
+}
+
+.nav-text {
+    font-family: Roboto Condensed;
+    color: rgb(255, 255, 255);
+}
+
+.nav-list {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 200ms;
+}
+
+.nav-list:hover {
+    border-bottom-color: rgb(255, 255, 255);
+}
+
+
+/* NAVIGATION CONTAINER #3 (RESPONSIVE EXTRA CONTENT) */
+.sidebar-extra-navs {
+    display: none;
+}
+.sidebar-login-signup {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sub-text {
+    font-family: Roboto Condensed;
+    font-size: 18px;
+}
+
+.socials {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.social-image {
+    width: 30px;
+    cursor: pointer;
+    filter: invert(0) sepia(1) saturate(0) hue-rotate(269deg) brightness(104%) contrast(100%);
+}
+
+
+/* CLOSE SIDEBAR CONTAINER */
+.sidebar-close-button {
+    width: 20px;
+}
+
+.sidebar-close-button-container {
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+
+/* HIDE SIDEBARS TO DISPLAY NONE */
+.sidebar-search-bar-container, .sidebar-search-bar, .sidebar-search-button, .sidebar-search-image, .sidebar-search-container, .sidebar-search-button, .sidebar-search-bar, .sidebar-search-image {
+    display: none;
+}
+
+/* MODAL TO DARKEN THE BACKGROUND WHEN SIDEBAR IS ACTIVE */
+.modal-background {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.141);
+    z-index: 200;
+    display: none;
+}
+
+/* RESPONSIVE CSS */
+@media (max-width: 1280px) {
+    .sidebar-container,
+    .sidebar-search-bar-container, .sidebar-search-bar, .sidebar-search-button, .sidebar-search-image, .sidebar-search-container, .sidebar-search-button, .sidebar-search-bar, .sidebar-search-image {
+        display: flex;
+    }
+    .navs {
+        height: 65px;
+    }
+    .hamburger-menu-container {
+        display: block;
+    }
+    .sidebar-container {
+        color: rgb(0, 0, 0);
+        font-size: 16px;
+        position: fixed;
+        background-color: rgb(255, 255, 255);
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 95vw;
+        max-width: 500px;
+        padding: 10px 20px 10px 20px;
+        z-index: 300;
+        align-items: start;
+        display: flex;
+        transform: translate(-100%);
+    }
+    .navigations {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+    .sidebar-content {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .nav-list  {
+        justify-content: start;
+        border-bottom-color: gray;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        transition: 200ms;
+    }
+    .nav-list:hover {
+        border-bottom-color: gray;
+        background-color: rgba(0, 0, 0, 0.212);
+    }
+    .nav-text {
+        margin-left: 10px;
+        color: black;
+    }
+    .login-button {
+        width: 15vw;
+        font-size: 14px;
+        padding: 8.5px 0 8.5px 0;
+        border-radius: 180px;
+        max-width: 120px;
+        min-width: 100px;
+    }
+    .search-bar {
+        font-size: 14px;
+        height: 38px;
+    }
+    .sidebar-extra-navs {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .sidebar-logo-container {
+        display: flex;
+    }
+}
+
+@media (max-width:840px) {
+    .header-navigation {
+        justify-content: space-between
+    }
+    .logo {
+        width: 100px;
+    }
+    .hamburger-menu {
+        width: 25px;
+    }
+    .search-button {
+        display: none;
+    }
+    .search-bar {
+        display: none;
+    }
+    .responsive-search-button, .responsive-search-image {
+        display: flex;
+    }
+}
+
+@media (max-width:4250px) {
+    .login-button {
+        display: none;
+    }
+}
+
+@media (max-height: 750px) and (max-width: 1280px) {
+    .sidebar-container {
+        overflow-y: scroll;
+    }
+}
+
+
+/* SIDEBAR ANIMATION */
+.sidebar-slide {
+    animation: sidebarPop 500ms forwards;
+  }
+  
+.sidebar-hide {
+    animation: sidebarHide 500ms;
+}
+
+
+@keyframes sidebarPop {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes sidebarHide {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}

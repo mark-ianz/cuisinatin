@@ -7,84 +7,159 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./styles/style.css">
     <link rel="shortcut icon" href="./images/favicon/favicon-white.svg" type="image/x-icon">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/nav-bar.css">
+    <link rel="stylesheet" href="./styles/general.css">
     <title>Cuisinatin | Filipino Cuisines</title>
 </head>
 <body>
-    <nav class="header-navigation">
-        <div class="top-header-container">
+    <div class="modal-background">
+    </div>
+    <div class="navs">
+        <nav class="header-navigation">
             <div class="top-left-container">
-                <div class="hamburger-menu-container">
+                <div class="hamburger-menu-container" onclick="toggleSidebar ()">
                     <img src="./images/hamburger-menu.png" class="hamburger-menu">
                 </div>
                 <img src="./images/logo/logo-white.svg" class="logo">
             </div>
-            <div class="middle-right-container">
-                <div class="top-middle-container">
-                    <div class="search-container">
-                        <input type="text" class="search-bar" placeholder="Search for cuisines">
-                        <button class="search-button">
-                            <img src="./images/search.svg" class="search-image">
-                        </button>
-                    </div>
+            <div class="top-right-container">
+                <div class="search-container">
+                    <input type="text" class="search-bar" placeholder="Search for cuisines">
+                    <button class="search-button">
+                        <img src="./images/search.svg" class="search-image">
+                    </button>
+                    <button class="responsive-search-button">
+                        <img src="./images/search.svg" class="responsive-search-image" onclick="toggleSidebar ()">
+                    </button>
                 </div>
-                <div class="top-right-container">
-                    <div class="login-signup-container">
-                        <button class="login-button">
-                            LOGIN
+                <div class="login-container">
+                    <button class="login-button">
+                        LOGIN
+                    </button>
+                </div>
+            </div>    
+        </nav>
+        <nav class="sidebar-container">
+            <div class="sidebar-content">
+                <div class="sidebar-logo-container">
+                    <a href="./index.html">
+                        <img src="./images/logo/logo-black.svg" class="sidebar-logo">
+                    </a>  
+                </div>
+                <div class="sidebar-search-container">
+                    <div class="search-nav-text">
+                        <b>Search</b>
+                    </div>
+                    <div class="sidebar-search-bar-container">
+                        <input type="text" class="sidebar-search-bar" placeholder="Search for cuisines">
+                        <button class="sidebar-search-button">
+                            <img src="./images/search.svg" class="sidebar-search-image">
                         </button>
-                        <button class="signup-button">
-                            SIGN UP
-                        </button>
+                    </div> 
+                </div>
+                <div class="navigations">
+                    <a href="index.html">
+                        <div class="nav-list">
+                            <p class="nav-text">
+                                HOME
+                            </p>
+                        </div>
+                    </a>
+                    <a href="./webpages/error-page.html">
+                        <div class="nav-list">
+                            <p class="nav-text">
+                                A-Z CUISINES
+                            </p>
+                        </div>
+                    </a>
+                    <a href="./webpages/error-page.html">
+                        <div class="nav-list">
+                            <p class="nav-text">
+                                FILIPINO DESSERTS
+                            </p>
+                        </div>
+                    </a>
+                    <a href="./webpages/error-page.html">
+                        <div class="nav-list">
+                            <p class="nav-text">
+                                FILIPINO MAIN DISHES
+                            </p>
+                        </div>
+                    </a>
+                    <a href="./webpages/error-page.html">
+                        <div class="nav-list">
+                            <p class="nav-text">
+                                FILIPINO SOUPS AND STEWS
+                            </p>
+                        </div>
+                    </a>
+                    <a href="./webpages/error-page.html">
+                        <div class="nav-list">
+                            <p class="nav-text">
+                                ADD A RECIPE
+                            </p>
+                        </div>
+                    </a>
+                    <a href="./webpages/error-page.html">
+                        <div class="nav-list">
+                            <p class="nav-text">
+                                WHAT WE OFFER
+                            </p>
+                        </div>
+                    </a>
+                    <a href="./webpages/error-page.html">
+                        <div class="nav-list">
+                            <p class="nav-text">
+                                CONTACT US
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="sidebar-extra-navs">
+                    <div class="sidebar-login-signup">
+                        <p class="sub-text">
+                            <b>ACCOUNT</b>
+                        </p>
+                        <a href="./webpages/error-page.html">
+                            <div class="nav-list">
+                                <p class="nav-text">
+                                    LOGIN
+                                </p>
+                            </div>
+                        </a>
+                        <a href="./webpages/error-page.html">
+                            <div class="nav-list">
+                                <p class="nav-text">
+                                    SIGNUP
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="socials-container">
+                        <p class="sub-text">
+                            <b>FOLLOW US</b>
+                        </p>
+                        <div class="socials">
+                           <div class="fb-social">
+                                <img src="./images/fb-logo.png" class="social-image">
+                           </div>
+                           <div class="ig-social">
+                                <img src="./images/ig-logo.webp" class="social-image">
+                           </div>
+                           <div class="twitter-social">
+                                <img src="./images/twitter-logo.png" class="social-image">
+                           </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="bottom-header-container">
-            <div class="bottom-header-content">
-                <div class="bottom-content">
-                    <p class="bottom-text">
-                        HOME
-                    </p>
-                </div>
-                <div class="bottom-content">
-                    <p class="bottom-text">
-                        A-Z CUISINES
-                    </p>
-                </div>
-                <div class="bottom-content">
-                    <p class="bottom-text">
-                        FILIPINO DESSERTS
-                    </p>
-                </div>
-                <div class="bottom-content">
-                    <p class="bottom-text">
-                        FILIPINO MAIN DISHES
-                    </p>
-                </div>
-                <div class="bottom-content">
-                    <p class="bottom-text">
-                        FILIPINO SOUPS AND STEWS
-                    </p>
-                </div>
-                <div class="bottom-content">
-                    <p class="bottom-text">
-                        ADD A RECIPE
-                    </p>
-                </div>
-                <div class="bottom-content">
-                    <p class="bottom-text">
-                        WHAT WE OFFER
-                    </p>
-                </div>
-                <div class="bottom-content">
-                    <p class="bottom-text">
-                        CONTACT US
-                    </p>
-                </div>
+            <div class="sidebar-close-button-container" onclick="toggleSidebar ()">
+                <img src="./images/close-button.png" class="sidebar-close-button">
             </div>
-        </div>
-    </nav>
+        </nav>
+    </div>
+    <script src="./scripts/script.js"></script>
 </body>
 </html>
