@@ -22,3 +22,9 @@ function checkSidebar () {
     sidebarElement.classList.remove ('sidebar-hide');
   }
 }
+
+function keyListener (event) {
+  if (event.key === 'Enter') {
+    location.href = "./webpages/error-page.html"
+  }
+}

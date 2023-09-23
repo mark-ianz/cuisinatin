@@ -254,9 +254,21 @@
 .social-image {
     width: 30px;
     cursor: pointer;
-    filter: invert(0) sepia(1) saturate(0) hue-rotate(269deg) brightness(104%) contrast(100%);
+    filter: invert(16%) sepia(0%) saturate(7%) hue-rotate(229deg) brightness(106%) contrast(105%);
+    transition: 200ms;
 }
 
+.fb-logo:hover {
+    filter: invert(37%) sepia(28%) saturate(4622%) hue-rotate(197deg) brightness(98%) contrast(93%);
+}
+
+.ig-logo:hover {
+    filter: invert(37%) sepia(47%) saturate(2981%) hue-rotate(322deg) brightness(91%) contrast(89%);
+}
+
+.twitter-logo:hover {
+    filter: invert(47%) sepia(88%) saturate(574%) hue-rotate(164deg) brightness(96%) contrast(98%);
+}
 
 /* CLOSE SIDEBAR CONTAINER */
 .sidebar-close-button {

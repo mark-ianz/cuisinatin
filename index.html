@@ -9,13 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="./images/favicon/favicon-white.svg" type="image/x-icon">
-    <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/nav-bar.css">
     <link rel="stylesheet" href="./styles/general.css">
     <title>Cuisinatin | Filipino Cuisines</title>
 </head>
 <body>
-    <div class="modal-background">
+    <div class="modal-background" onclick="toggleSidebar ();">
     </div>
     <div class="navs">
         <nav class="header-navigation">
@@ -23,25 +22,28 @@
                 <div class="hamburger-menu-container" onclick="toggleSidebar ()">
                     <img src="./images/hamburger-menu.png" class="hamburger-menu">
                 </div>
-                <img src="./images/logo/logo-white.svg" class="logo">
+                <a href="index.html">
+                    <img src="./images/logo/logo-white.svg" class="logo">
+                </a>
             </div>
             <div class="top-right-container">
                 <div class="search-container">
-                    <input type="text" class="search-bar" placeholder="Search for cuisines">
+                    <input type="text" class="search-bar" placeholder="Search for cuisines" onkeypress="keyListener (event)">
                     <a href="./webpages/error-page.html">
                         <button class="search-button">
                             <img src="./images/search.svg" class="search-image">
                         </button>
                     </a>
-                    
                     <button class="responsive-search-button">
                         <img src="./images/search.svg" class="responsive-search-image" onclick="toggleSidebar ()">
                     </button>
                 </div>
                 <div class="login-container">
-                    <button class="login-button">
-                        LOGIN
-                    </button>
+                    <a href="./webpages/error-page.html">
+                        <button class="login-button">
+                            LOGIN
+                        </button>
+                    </a>
                 </div>
             </div>    
         </nav>
@@ -57,10 +59,10 @@
                         <b>Search</b>
                     </div>
                     <div class="sidebar-search-bar-container">
-                        <input type="text" class="sidebar-search-bar" placeholder="Search for cuisines">
+                        <input type="text" class="sidebar-search-bar" placeholder="Search for cuisines" onkeypress="keyListener (event)">
                         <a href="./webpages/error-page.html">
                             <button class="sidebar-search-button">
-                                <img src="./images/search.svg" class="sidebar-search-image">  
+                                <img src="./images/search.svg" class="sidebar-search-image">
                             </button>
                         </a>
                     </div> 
@@ -148,14 +150,20 @@
                             <b>FOLLOW US</b>
                         </p>
                         <div class="socials">
-                           <div class="fb-social">
-                                <img src="./images/fb-logo.png" class="social-image">
+                           <div>
+                                <a href="https://www.facebook.com/cuisinatin" target="_blank">
+                                    <img src="./images/fb-logo.png" class="social-image fb-logo">
+                                </a>
                            </div>
-                           <div class="ig-social">
-                                <img src="./images/ig-logo.webp" class="social-image">
+                           <div>
+                                <a href="https://www.instagram.com/cuisinatin/" target="_blank">
+                                    <img src="./images/instagram-logo.png" class="social-image ig-logo">
+                                </a>
                            </div>
-                           <div class="twitter-social">
-                                <img src="./images/twitter-logo.png" class="social-image">
+                           <div>
+                                <a href="https://twitter.com/cuisinatin" target="_blank">
+                                    <img src="./images/twitter-logo.png" class="social-image twitter-logo">
+                                </a>
                            </div>
                         </div>
                     </div>
