@@ -384,7 +384,7 @@
     }
 }
 
-@media (max-width:4250px) {
+@media (max-width:450px) {
     .login-button {
         display: none;
     }
