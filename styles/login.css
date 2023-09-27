@@ -12,7 +12,7 @@ body {
   object-fit: cover;
 }
 
-.login-section {
+.account-section {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,7 +20,7 @@ body {
   background-color: rgb(255, 252, 223);
 }
 
-.login-container {
+.login-container,.signup-container {
   border-style: solid;
   border-width: 1px;
   border-radius: 10px;
@@ -28,12 +28,12 @@ body {
   height: 100%;
   width: 30vw;
   max-width: 400px;
-  max-height: 600px;
+  max-height: 700px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 30px;
   background-color: white;
 }
 
@@ -49,18 +49,6 @@ body {
   width: 150px;
 }
 
-.login {
-  font-weight: bold;
-  font-size: 36px;
-}
-
-.hr {
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-bottom-color: rgb(207, 207, 207);
-  width: 90%;
-}
-
 /* MIDDLE SIDE */
 
 .middle-side {
@@ -70,8 +58,12 @@ body {
 .input-container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
   width: 200px;
+  gap: 10px;
+}
+
+.user-input {
+  position: relative;
 }
 
 .text-input,.password-input {
@@ -82,23 +74,34 @@ body {
   border-bottom-width: 1px;
   outline: none;
   font-size: 16px;
+  width: 180px;
+  padding: 5px 10px;
 }
 
 .password-container {
-  width: 200px;
   position: relative;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  border-bottom-color: rgb(191, 191, 191);
 }
 
 .password-input {
-  width: 85%;
-  border: none;
+  padding-right: 35px;
+  width: 155px;
 }
 
-.text-input:focus{
+.text-input:focus,.password-input:focus{
   border-bottom-color: rgb(201, 169, 27);
+}
+
+.show-pw, .hide-pw {
+  width: 30px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 6px;
+  right: 0;
+  opacity: .5;
+}
+
+.hide-pw {
+  display: none;
 }
 
 .warning {
@@ -126,25 +129,37 @@ body {
   background-color: rgb(236, 231, 189);
 }
 
-.show-pw, .hide-pw {
-  width: 30px;
-  cursor: pointer;
-  position: absolute;
-  bottom: 2px;
-  right: 0;
-}
-
-.hide-pw {
-  display: none;
-}
-
 .forgot-password-container {
   display: flex;
   justify-content: end;
   padding: 5px 0px;
 }
 
-.forgot-password {
-  color: black;
-  font-size: 10px;
+/* BOTTOM SIDE */
+.bottom-side {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.login-with-button {
+  padding: 10px 0;
+  width: 200px;
+  background: none;
+  border-style: solid;
+  border-width: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: background-color 100ms;
+}
+
+.login-with-button:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.login-with-logo {
+  width: 20px;
 }

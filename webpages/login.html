@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="./images/favicon/favicon-white.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="../images/favicon/favicon-white.svg" type="image/x-icon">
     <link rel="stylesheet" href="../styles/general.css">
     <link rel="stylesheet" href="../styles/login.css">
     <title>Cuisinatin | Filipino Cuisines</title>
@@ -17,13 +17,13 @@
   <!-- MAIN CONTAINER -->
   <div class="main-container">
 
-    <!-- BACKGROUND IMAGE SECTION -->
+    <!-- BACKGROUND IMAGE SECTION (LEFT SCREEN) -->
     <div class="image-section">
       <img src="../images/login-background.jpg" alt="Error" class="background-image">
     </div>
 
-    <!-- LOGIN SECTION -->
-    <div class="login-section">
+    <!-- LOGIN SECTION (RIGHT SCREEN) -->
+    <div class="account-section">
 
       <!-- LOGIN CONTAINER -->
       <div class="login-container">
@@ -33,23 +33,23 @@
             <img src="../images/logo/logo-black.svg" class="logo">
           </div>
           <div>
-            <p class="login">
+            <p class="bold-36px">
               Log in
             </p>
           </div>
         </div>
-        
-        <div class="hr"></div>
 
         <!-- MIDDLE SIDE OF CONTAINER (LOG IN INPUT) -->
         <div class="middle-side">
           <div class="input-container">
-            <input type="text" class="js-username text-input" placeholder="Username">
+            <div class="user-input">
+              <input type="text" class="js-username text-input" placeholder="Username" onkeydown="checkForWarning (event, 'user'), keyListener (event)">
+            </div>
             <p class="js-username-warning warning">
               Please fill this field out.
             </p>
             <div class="password-container">
-              <input type="password" class="js-password password-input" placeholder="Password">
+              <input type="password" class="js-password password-input" placeholder="Password" onkeydown="checkForWarning (event, 'password'), keyListener (event)">
               <img src="../images/open-eye.png" class="js-open-eye show-pw" onclick="togglePassword()">
               <img src="../images/close-eye.png" class="js-close-eye hide-pw" onclick="togglePassword()">
             </div>
@@ -62,10 +62,40 @@
               Log in
             </button>
             <div class="forgot-password-container">
-              <a href="" class="forgot-password">
+              <a href="./error-page.html" class="twelve-px">
                 Forgot password?
               </a>
             </div>
+          </div>
+        </div>
+
+        <!-- HORIZONTAL LINE -->
+        <p class="line-word"><span class="line-word-text">OR LOGIN WITH</span></p>
+        
+        <!-- BOTTOM SIDE OF CONTAINER (LOG IN USING) -->
+        <div class="bottom-side">
+          <div class="login-with-container">
+            <button class="login-with-button">
+              <img src="../images/google-logo.png" class="login-with-logo">
+              Log in with Google
+            </button>            
+          </div>
+          <div class="login-with-container">
+            <button class="login-with-button">
+              <img src="../images/facebook-logo.png" class="login-with-logo">
+              Log in with Facebook
+            </button>
+          </div>
+          <div class="login-with-container">
+            <button class="login-with-button">
+              <img src="../images/tw-logo.png" class="login-with-logo">
+              Log in with Twitter
+            </button>
+          </div>
+          <div class="signup-now">
+            <p class="twelve-px">
+              Don't have an account? <a class="twelve-px text-underline" href="./signup.html">Create now!</a>
+            </p>
           </div>
         </div>
       </div>
