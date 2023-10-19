@@ -8,38 +8,3 @@ a {
   text-decoration: none;
   color: rgb(255, 255, 255);
 }
-
-.twelve-px {
-  font-size: 12px;
-  color: black;
-}
-
-.line-word {
-  font-size: 12px;
-  border-bottom: solid 1px rgb(191, 191, 191);
-  line-height: 0.001em;
-  text-align: center;
-  width: 90%;
-}
-
-.line-word-text {
-  background-color: white;
-  padding: 0 10px;
-}
-
-.hr {
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-bottom-color: rgb(207, 207, 207);
-  width: 90%;
-}
-
-.bold-36px {
-  font-weight: bold;
-  font-size: 36px;
-}
-
-.text-underline {
-  text-decoration: underline;
-}
-

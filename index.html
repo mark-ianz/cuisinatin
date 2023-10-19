@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="./styles/nav-bar.css">
     <link rel="stylesheet" href="./styles/general.css">
     <title>Cuisinatin | Filipino Cuisines</title>
+    
+    <link rel="stylesheet" href="./styles/home.css">
 </head>
 <body>
     <div class="modal-background" onclick="toggleSidebar ();">
@@ -28,12 +30,14 @@
             </div>
             <div class="top-right-container">
                 <div class="search-container">
-                    <input type="text" class="search-bar" placeholder="Search for cuisines" onkeypress="keyListener (event)">
-                    <a href="./webpages/error-page.html">
-                        <button class="search-button">
-                            <img src="./images/search.svg" class="search-image">
-                        </button>
-                    </a>
+                    <div class="search-bar-container">
+                        <input type="text" placeholder="Search for cuisines" onkeypress="keyListener (event)" class="search-bar">
+                        <a href="./webpages/error-page.html">
+                            <button class="search-button">
+                                <img src="./images/search.svg" class="search-image">
+                            </button>
+                        </a>
+                    </div>
                     <button class="responsive-search-button">
                         <img src="./images/search.svg" class="responsive-search-image" onclick="toggleSidebar ()">
                     </button>
@@ -78,20 +82,6 @@
                     <a href="./webpages/error-page.html">
                         <div class="nav-list">
                             <p class="nav-text">
-                                A-Z CUISINES
-                            </p>
-                        </div>
-                    </a>
-                    <a href="./webpages/error-page.html">
-                        <div class="nav-list">
-                            <p class="nav-text">
-                                FILIPINO DESSERTS
-                            </p>
-                        </div>
-                    </a>
-                    <a href="./webpages/error-page.html">
-                        <div class="nav-list">
-                            <p class="nav-text">
                                 FILIPINO MAIN DISHES
                             </p>
                         </div>
@@ -100,6 +90,13 @@
                         <div class="nav-list">
                             <p class="nav-text">
                                 FILIPINO SOUPS AND STEWS
+                            </p>
+                        </div>
+                    </a>
+                    <a href="./webpages/error-page.html">
+                        <div class="nav-list">
+                            <p class="nav-text">
+                                FILIPINO DESSERTS
                             </p>
                         </div>
                     </a>
@@ -140,7 +137,7 @@
                         <a href="./webpages/error-page.html">
                             <div class="nav-list">
                                 <p class="nav-text">
-                                    SEND US FEEDBACK!
+                                    SIGNUP
                                 </p>
                             </div>
                         </a>
@@ -157,12 +154,12 @@
                            </div>
                            <div>
                                 <a href="https://www.instagram.com/cuisinatin/" target="_blank">
-                                    <img src="./images/instagram-logo-outline.png" class="social-image ig-logo">
+                                    <img src="./images/instagram-logo.png" class="social-image ig-logo">
                                 </a>
                            </div>
                            <div>
                                 <a href="https://twitter.com/cuisinatin" target="_blank">
-                                    <img src="./images/twitter-logo-outline.png" class="social-image twitter-logo-outline">
+                                    <img src="./images/twitter-logo.png" class="social-image twitter-logo">
                                 </a>
                            </div>
                         </div>
@@ -174,6 +171,27 @@
             </div>
         </nav>
     </div>
+    <main>
+        <div class="main-container">
+            <div class="text-container">
+                <div class="title-text-container">
+                    <!-- <img src="./images/logo/logo-white.svg" class="home-logo"> -->
+                    <h1>
+                        FILIPINO
+                    </h1>
+                    <h1 class="food-menu">FOOD MENU</h1>
+                </div>
+                <div class="sub-text-container">
+                    <p class="sub-text">
+                        Welcome to Cuisinatin, where the heart and soul of Filipino cuisine come alive. <br> Our platform is a vibrant celebration of Filipino culinary traditions, a place where food enthusiasts from around the world come together to share their love for all things Filipino.
+                    </p>
+                </div>
+            </div>
+            <button class="explore-button">
+                Explore your appetite now!
+            </button>
+        </div>
+    </main>
     <script src="./scripts/script.js"></script>
 </body>
 </html>

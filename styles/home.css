@@ -1,0 +1,67 @@
+body {
+  background-attachment: fixed;
+  background-color: #000000;
+  background-image: url(../images/home-body-background.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+main {
+  align-items: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 120px;
+  /* padding-left: 18%; */
+  width: 100vw;
+  min-width: 1280px;
+}
+
+.main-container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  padding-left: 75px;
+  padding-right: 675px;
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.explore-button {
+  background-color: #91520a;
+  border: none;
+  border-radius: 100px;
+  color: white;
+  cursor: pointer;
+  font-family: Roboto;
+  font-size: 18px;
+  padding: 20px;
+  transition: 200ms;
+}
+
+.explore-button:hover {
+  background-color: #aa600c;
+  text-decoration: underline;
+}
+
+
+.food-menu {
+  color: #aa600c;
+}
+
+h1 {
+  font-size: 69px;
+  line-height: 60px;
+}
+
+.sub-text-container {
+  width: 650px;
+}

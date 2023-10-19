@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="../images/favicon/favicon-white.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="./images/favicon/favicon-white.svg" type="image/x-icon">
     <link rel="stylesheet" href="../styles/general.css">
     <link rel="stylesheet" href="../styles/login.css">
     <title>Cuisinatin | Filipino Cuisines</title>
@@ -17,13 +17,13 @@
   <!-- MAIN CONTAINER -->
   <div class="main-container">
 
-    <!-- BACKGROUND IMAGE SECTION (LEFT SCREEN) -->
+    <!-- BACKGROUND IMAGE SECTION -->
     <div class="image-section">
-      <img src="https://scontent.fmnl26-2.fna.fbcdn.net/v/t1.6435-9/118600417_1127730054290101_8157724040535529374_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeGtJDLfbUic_i-vFoCkAfE5XIDlXW7Ns0hcgOVdbs2zSDLx3ETjWI75jWDYZPk86hZ0HMu6mDa9MHs5hvV8RFgR&_nc_ohc=lWVo6GDPrbQAX-LKYI5&_nc_ht=scontent.fmnl26-2.fna&oh=00_AfCwVhikt1AWvFiq5-r0WjwDnUxRUP3Fs2KPy7y5GEnMNQ&oe=653C3FDC" alt="Error" class="background-image">
+      <img src="../images/login-background.jpg" alt="Error" class="background-image">
     </div>
 
-    <!-- LOGIN SECTION (RIGHT SCREEN) -->
-    <div class="account-section">
+    <!-- LOGIN SECTION -->
+    <div class="login-section">
 
       <!-- LOGIN CONTAINER -->
       <div class="login-container">
@@ -33,23 +33,23 @@
             <img src="../images/logo/logo-black.svg" class="logo">
           </div>
           <div>
-            <p class="bold-36px">
+            <p class="login">
               Log in
             </p>
           </div>
         </div>
+        
+        <div class="hr"></div>
 
         <!-- MIDDLE SIDE OF CONTAINER (LOG IN INPUT) -->
         <div class="middle-side">
           <div class="input-container">
-            <div class="user-input">
-              <input type="text" class="js-username text-input" placeholder="Username" onkeydown="checkForWarning (event, 'user'), keyListener (event)">
-            </div>
+            <input type="text" class="js-username text-input" placeholder="Username">
             <p class="js-username-warning warning">
               Please fill this field out.
             </p>
             <div class="password-container">
-              <input type="password" class="js-password password-input" placeholder="Password" onkeydown="checkForWarning (event, 'password'), keyListener (event)">
+              <input type="password" class="js-password password-input" placeholder="Password">
               <img src="../images/open-eye.png" class="js-open-eye show-pw" onclick="togglePassword()">
               <img src="../images/close-eye.png" class="js-close-eye hide-pw" onclick="togglePassword()">
             </div>
@@ -58,44 +58,14 @@
             </p>
           </div>
           <div class="login-button-container">
-            <button class="login-button" onclick="login ()">
+            <button class="login-button" onclick="login()">
               Log in
             </button>
             <div class="forgot-password-container">
-              <a href="./error-page.html" class="twelve-px">
+              <a href="" class="forgot-password">
                 Forgot password?
               </a>
             </div>
-          </div>
-        </div>
-
-        <!-- HORIZONTAL LINE -->
-        <p class="line-word"><span class="line-word-text">OR LOGIN WITH</span></p>
-        
-        <!-- BOTTOM SIDE OF CONTAINER (LOG IN USING) -->
-        <div class="bottom-side">
-          <div class="login-with-container">
-            <button class="login-with-button">
-              <img src="../images/google-logo.png" class="login-with-logo">
-              Log in with Google
-            </button>            
-          </div>
-          <div class="login-with-container">
-            <button class="login-with-button">
-              <img src="../images/facebook-logo.png" class="login-with-logo">
-              Log in with Facebook
-            </button>
-          </div>
-          <div class="login-with-container">
-            <button class="login-with-button">
-              <img src="../images/tw-logo.png" class="login-with-logo">
-              Log in with Twitter
-            </button>
-          </div>
-          <div class="signup-now">
-            <p class="twelve-px">
-              Don't have an account? <a class="twelve-px text-underline" href="./signup.html">Create now!</a>
-            </p>
           </div>
         </div>
       </div>
