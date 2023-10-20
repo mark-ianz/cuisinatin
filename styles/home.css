@@ -1,8 +1,48 @@
+/* CUSTOM NAVBAR STYLING FOR HOME.HMTL */
+
+.navs {
+  background-color: #00000046;
+}
+
+.search-bar {
+  border-color: white;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.267);
+}
+
+.search-button {
+  border-color: white;
+}
+
+.search-button img {
+  filter: invert(1);
+}
+
+.search-button:hover {
+  background-color: rgba(0, 0, 0, 0.267);
+}
+
+.login-button {
+  color: white;
+  border-color: white;
+}
+
+.login-button:hover {
+  background-color: rgba(0, 0, 0, 0.267);
+}
+
+h1 {
+  font-size: 69px;
+  line-height: 60px;
+}
+
+/* ------ */
+
 body {
   background-attachment: fixed;
   background-color: #000000;
   background-image: url(../images/home-body-background.png);
-  background-position: center;
+  background-position: right;
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;
@@ -13,20 +53,18 @@ main {
   color: white;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  height: 100vh;
+  justify-content: flex-start;
   padding-top: 120px;
-  /* padding-left: 18%; */
-  width: 100vw;
-  min-width: 1280px;
 }
 
 .main-container {
   align-items: flex-start;
   display: flex;
+  max-width: 1240px;
   flex-direction: column;
   gap: 50px;
-  padding-left: 75px;
-  padding-right: 675px;
+  width: 95vw;
 }
 
 .text-container {
@@ -49,7 +87,16 @@ main {
 
 .explore-button:hover {
   background-color: #aa600c;
-  text-decoration: underline;
+}
+
+.border {
+  transition: 300ms;
+  border-bottom: solid 1px;
+  border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+.explore-button:hover .border {
+  border-bottom-color: white;
 }
 
 
@@ -57,11 +104,71 @@ main {
   color: #aa600c;
 }
 
-h1 {
-  font-size: 69px;
-  line-height: 60px;
-}
-
 .sub-text-container {
   width: 650px;
+}
+
+@media (max-width: 1280px) {
+  .main-container {
+    align-items: center;
+    background-color: #00000046;
+    border-radius: 12px;
+    max-width: none;
+    padding: 50px;
+    width: auto;
+  }
+  .title-text-container {
+    font-size: 36px;
+    text-align: center;
+  }
+  .text-container {
+    align-items: center;
+  }
+  .sub-text {
+    font-size: 18px;
+  }
+  .food-menu {
+    color: #ff9f31;
+  }
+  .explore-button {
+    background-color: #d6811f;
+  }
+  .explore-button:hover {
+    background-color: rgb(169, 95, 10);
+  }
+}
+
+@media (max-width:840px) {
+  .main-container {
+    width: 80vw;
+  }
+  .sub-text-container {
+    width: auto;
+  }
+  .explore-button {
+    padding: 15px;
+  }
+}
+
+@media (max-width:640px) {
+  .main-container {
+    gap: 15px;
+    padding: 20px;
+  }
+  .explore-button {
+    font-size: 14px;
+  }
+}
+
+@media (max-height:770px) {
+  main {
+    justify-content: flex-start;
+    padding-top: 50px;
+  }
+}
+
+@media (max-height:665px) {
+  main {
+    padding-top: 20px;
+  }
 }

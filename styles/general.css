@@ -8,3 +8,18 @@ a {
   text-decoration: none;
   color: rgb(255, 255, 255);
 }
+
+body {
+  background-color: black;
+  padding-top: 170px;
+}
+
+:root{
+  color-scheme: dark;
+}
+
+@media (max-width: 1280px) {
+  body {
+    padding-top: 85px;
+  }
+}
