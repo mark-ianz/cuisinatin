@@ -1,0 +1,499 @@
+/* NAVIGATION MAIN CONTAINER */
+.navs {
+    align-items: center;
+    background: none;
+    background-color: #1a1a1b;
+    border-bottom: solid 1px #343536;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: space-around;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+
+/* HEADER NAVIGATION */
+/* (TOP LEFT CONTAINER) */
+.header-navigation {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 95vw;
+    justify-content: space-between;
+    max-width: 1240px;
+}
+
+.top-left-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.hamburger-menu-container {
+    display: none;
+}
+
+.hamburger-menu {
+    width: 30px;
+    filter: invert(19%) sepia(5%) saturate(260%) hue-rotate(169deg) brightness(190%) contrast(91%);
+    cursor: pointer;
+}
+
+.logo {
+    width: 150px;
+    cursor: pointer;
+    filter: invert(19%) sepia(5%) saturate(260%) hue-rotate(169deg) brightness(90%) contrast(91%);
+}
+
+
+/* HEADER NAVIGATION */
+/* (TOP RIGHT CONTAINER) */
+.top-right-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+
+/* SEARCH CONTAINER AND RESPONSIVE SEARCH CONTAINER */
+.search-container,.sidebar-search-bar-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-grow: 1;
+}
+
+.search-bar-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.search-bar,.sidebar-search-bar {
+    border-radius: 30px;
+    border: solid 1px #343536;
+    background-color: #272729;
+    flex-grow: 1;
+    height: 40px;
+    outline: none;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 25vw;
+}
+
+.search-bar:hover,.sidebar-search-bar:hover {
+    border-color: white;
+}
+
+.search-button,.sidebar-search-button,.responsive-search-button {
+    background: none;
+    border: 1px solid #343536;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 200ms;
+}
+
+.search-image,.sidebar-search-image,.responsive-search-image  {
+    width: 27px;
+    filter: invert(19%) sepia(6%) saturate(207%) hue-rotate(169deg) brightness(94%) contrast(91%);
+    transition: 200ms;
+}
+
+.search-button:hover,.responsive-search-button:hover {
+    border-color: rgb(215, 218, 220);
+}
+
+.search-image:hover,.sidebar-search-image:hover,.responsive-search-image:hover {
+    filter: invert(93%) sepia(6%) saturate(92%) hue-rotate(161deg) brightness(97%) contrast(86%);
+}
+
+
+.responsive-search-button, .responsive-search-image {
+    display: none;
+}
+
+
+/* LOGIN CONTAINER */
+.login-button {
+    padding: 8.5px 40px 8.5px 40px;
+    border-radius: 36px;
+    border: solid 2px #343536;
+    font-family: Roboto;
+    font-weight: bold;
+    font-size: 16px;
+    color: rgb(215, 218, 220);
+    background: none;
+    cursor: pointer;
+    transition: 150ms;
+}
+
+.login-button:hover {
+    border-color: white;
+}
+
+
+/* SIDEBAR NAVIGATIONS */
+.sidebar-container {
+    color: white;
+    font-size: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 95vw;
+    max-width: 1240px;
+}
+
+
+/* SIDEBAR MAIN NAVIGATION CONTAINER*/
+.sidebar-content {
+    display: flex;
+    gap: 20px;
+}
+
+
+/* NAVIGATION CONTAINER #1 (LOGO) */
+.sidebar-logo-container {
+    display: none;
+    width: 100%;
+    justify-content: center;
+}
+
+.sidebar-logo {
+    width: 120px;
+}
+
+
+/* NAVIGATION CONTAINER #2 (SEARCH BAR) */
+.search-nav-text {
+    font-family: Roboto Condensed;
+}
+
+.sidebar-search-container {
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.sidebar-search-button {
+    width: 40px;
+    height: 40px;
+}
+
+.sidebar-search-button:hover {
+    border-color: white;
+}
+
+.sidebar-search-image {
+    width: 27px;
+    height: 27px;
+}
+
+.sidebar-search-bar {
+    border-width: 1px;
+    font-size: 14px;
+}
+
+
+/* NAVIGATION CONTAINER #3 (NAVIGATIONS LIST) */
+.navigations {
+    display: flex;
+    flex-direction: row;
+    width: 95vw;
+    justify-content: space-between;
+    max-width: 1240px;
+}
+
+.nav-text {
+    font-family: Roboto Condensed;
+    font-size: 20px;
+    color: rgb(215, 218, 220);
+}
+
+.nav-list {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 200ms;
+}
+
+.nav-list:hover {
+    border-bottom-color: rgb(255, 255, 255);
+}
+
+/* FOR DROPDOWN */
+
+.dropdown {
+    position: relative;
+  }
+  
+.dropdown:hover .dropdown-list {
+    display: flex;
+}
+
+.dropdown-list {
+    align-items: center;
+    background-color: #1a1a1b;
+    border: solid 1px #343536;
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    left: -100px;
+    list-style-type: none;
+    padding: 10px 0;
+    position: absolute;
+    width: 290px;
+}
+
+.dropdown-list li {
+    text-align: center;
+    border-bottom: solid 1px rgba(255, 255, 255, 0);
+    transition: 200ms;
+    width: 270px;
+}
+
+.dropdown-list li:hover {
+    border-bottom: solid 1px white;
+}
+
+.caret-down {
+    margin-left: 5px;
+    filter: invert(100%) sepia(100%) saturate(2%) hue-rotate(320deg) brightness(102%) contrast(101%);
+    height: 20px;
+    width: 20px;
+}
+
+/* NAVIGATION CONTAINER #3 (RESPONSIVE EXTRA CONTENT) */
+.sidebar-extra-navs {
+    display: none;
+}
+.sidebar-login-signup {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sub-text {
+    font-family: Roboto Condensed;
+    font-size: 18px;
+}
+
+.socials {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.social-image {
+    width: 30px;
+    cursor: pointer;
+    filter: invert(96%) sepia(6%) saturate(88%) hue-rotate(162deg) brightness(90%) contrast(95%);
+    transition: 200ms;
+}
+
+.fb-logo:hover {
+    filter: invert(37%) sepia(28%) saturate(4622%) hue-rotate(197deg) brightness(98%) contrast(93%);
+}
+
+.ig-logo:hover {
+    filter: invert(37%) sepia(47%) saturate(2981%) hue-rotate(322deg) brightness(91%) contrast(89%);
+}
+
+.twitter-logo:hover {
+    filter: invert(47%) sepia(88%) saturate(574%) hue-rotate(164deg) brightness(96%) contrast(98%);
+}
+
+/* CLOSE SIDEBAR CONTAINER */
+.sidebar-close-button {
+    width: 20px;
+    filter: invert(96%) sepia(6%) saturate(88%) hue-rotate(162deg) brightness(90%) contrast(95%);
+}
+
+.sidebar-close-button-container {
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: none;
+}
+
+
+/* HIDE SIDEBARS TO DISPLAY NONE */
+.sidebar-search-bar-container, .sidebar-search-bar, .sidebar-search-button, .sidebar-search-image, .sidebar-search-container, .sidebar-search-button, .sidebar-search-bar, .sidebar-search-image {
+    display: none;
+}
+
+/* MODAL TO DARKEN THE BACKGROUND WHEN SIDEBAR IS ACTIVE */
+.modal-background {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.141);
+    z-index: 200;
+    display: none;
+}
+
+/* RESPONSIVE CSS */
+@media (max-width: 1280px) {
+    .sidebar-container,
+    .sidebar-search-bar-container, .sidebar-search-bar, .sidebar-search-button, .sidebar-search-image, .sidebar-search-container, .sidebar-search-button, .sidebar-search-bar, .sidebar-search-image {
+        display: flex;
+    }
+    .navs {
+        height: 65px;
+        z-index: 300;
+    }
+    .hamburger-menu-container {
+        display: block;
+    }
+    .sidebar-container {
+        align-items: start;
+        background-color: #1a1a1b;
+        border: solid 1px #343536;
+        display: flex;
+        font-size: 16px;
+        max-width: 500px;
+        padding: 10px 20px 10px 20px;
+        transform: translate(-100%);
+        width: 89vw;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+    }
+    .navigations {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+    .sidebar-content {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .nav-list  {
+        border-bottom-color: gray;
+        justify-content: start;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        transition: 200ms;
+    }
+    .nav-list:hover {
+        background-color: rgba(145, 145, 145, 0.169);
+        border-bottom-color: gray;
+    }
+    .nav-text {
+        margin-left: 10px;
+    }
+    .login-button {
+        width: 15vw;
+        font-size: 14px;
+        padding: 8.5px 0 8.5px 0;
+        border-radius: 180px;
+        max-width: 120px;
+        min-width: 100px;
+    }
+    .search-bar {
+        font-size: 14px;
+        height: 38px;
+    }
+    .sidebar-extra-navs {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .sidebar-logo-container {
+        display: flex;
+    }
+    .sidebar-close-button-container {
+        display: block;
+    }
+    .logo {
+        width: 120px;
+    }
+}
+
+@media (max-width:840px) {
+    .header-navigation {
+        justify-content: space-between
+    }
+    .logo {
+        width: 100px;
+    }
+    .hamburger-menu {
+        width: 25px;
+    }
+    .search-button {
+        display: none;
+    }
+    .search-bar {
+        display: none;
+    }
+    .responsive-search-button, .responsive-search-image {
+        display: flex;
+    }
+}
+
+@media (max-width:450px) {
+    .login-button {
+        display: none;
+    }
+}
+
+@media (max-height: 800px) and (max-width: 1280px) {
+    .sidebar-container {
+        overflow-y: scroll;
+    }
+}
+
+
+/* SIDEBAR ANIMATION */
+.sidebar-slide {
+    animation: sidebarPop 500ms forwards;
+  }
+  
+.sidebar-hide {
+    animation: sidebarHide 500ms;
+}
+
+
+@keyframes sidebarPop {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes sidebarHide {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}

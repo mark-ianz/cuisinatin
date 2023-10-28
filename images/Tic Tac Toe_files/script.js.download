@@ -1,0 +1,109 @@
+let row1 = ['X','',''];
+let row2 = ['','X',''];
+let row3 = ['','','X'];
+
+let whoseMove = 'X';
+function checkWhoWillMove () {
+  if (whoseMove === 'X') {
+    whoseMove = 'O'
+  }
+  else {
+    whoseMove = 'X'
+  }
+}
+
+function makeMove (arr, move, spot) {
+  /* STEP 1: CHECK MOVE  */
+
+  checkWhoWillMove ();
+
+  /* IF MOVE IS X */
+  if (move === 'X') { 
+    arr.forEach ((value,index )=> {
+      /* CHECK SPOT AND CHECK IF SPOT IS EMPTY OR NOT */
+      if (index + 1 === spot && (value === '' || value === '')) { 
+        /* IF EMPTY, PUSH THE MOVE */
+        arr [index] = move
+      }
+      /* IF NOT EMPTY, SEND AND WARNING */
+      else if (index + 1 === spot && (value !== '' || value !== '')) {
+        console.log ('Already occupied');
+      }
+    });
+    checkRowWin ('X');
+    checkColumnWin ('X')
+  }
+
+  /* IF MOVE IS O */  
+  if (move === 'O') { 
+    arr.forEach ((value,index )=> {
+      if (index + 1 === spot && (value === '' || value === '')) { 
+        arr [index] = move
+      }
+      else if (index + 1 === spot && (value !== '' || value !== '')) {
+        console.log ('Already occupied');
+      }
+    });
+    checkRowWin ('O');
+    checkColumnWin ('O')
+  }
+}
+
+function checkRowWin (move) {
+  /* FOR ROW 1 */
+  let row1Sequence = 0;
+
+  row1.forEach ((value) => {
+    if (value === move) {
+      row1Sequence++
+    }
+  })
+  if (row1Sequence === 3) {
+    console.log ('You Win!')
+  }
+
+  /* FOR ROW 2 */
+  let row2Sequence = 0;
+
+  row2.forEach ((value) => {
+    if (value === move) {
+      row2Sequence++
+    }
+  })
+  if (row2Sequence === 3) {
+    console.log ('You Win!')
+  }
+
+  /* FOR ROW 3 */
+  let row3Sequence = 0;
+
+  row3.forEach ((value) => {
+    if (value === move) {
+      row3Sequence++
+    }
+  })
+  if (row3Sequence === 3) {
+    console.log ('You Win!')
+  }
+}
+
+function checkColumnWin (move) {
+  /* FOR COLUMN 1 */
+  if (row1 [0] === move && row2 [0] === move && row3 [0] === move) {
+    console.log ('Col Win')
+  }
+
+  /* FOR COLUMN 2 */
+  if (row1 [1] === move && row2 [1] === move && row3 [1] === move) {
+    console.log ('Col Win')
+  }
+
+  /* FOR COLUMN 3 */
+  if (row1 [2] === move && row2 [2] === move && row3 [2] === move) {
+    console.log ('Col Win')
+  }
+};
+
+function checkDiagWin (move) {
+  if (row1 [0] === move && row2 [1] === move && row3 [2] === move)
+}
