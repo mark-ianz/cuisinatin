@@ -1,17 +1,15 @@
 import { cuisines } from "../data/cuisines.js";
 
 let newArr = [];
-let cuisineDates = [];
-let cuisineID = [];
+let cuisineTimeDate = [];
 
-/* WILL PUSH THE CUISINE DATES AND ID INTO NEW ARRAY */
+/* WILL CONCATINATE THE DATE POSTED AND TIME POSTED AND PUSH IT TO ARRAY */
 cuisines.forEach ((cuisine) => {
-  cuisineDates.push (cuisine.datePosted);
-  cuisineID.push (cuisine.cuisineID);
+  cuisineTimeDate.push (cuisine.datePosted + ' ' + cuisine.timePosted);
 });
 
 /* WILL SORT THE ARRAY OF DATES */
-cuisineDates.sort ((a,b)=> {
+cuisineTimeDate.sort ((a,b)=> {
   let date1 = new Date (a);
   let date2 = new Date (b);
 
@@ -23,14 +21,12 @@ cuisineDates.sort ((a,b)=> {
   };
 });
 
-/* WILL PUSH THE CUISINE INTO NEWARR IF IT MATCHES THE DATE AND ID */
-cuisineDates.forEach ((date) => {
-  cuisineID.forEach ((cuisineID) => {
-    cuisines.forEach ((cuisine) => {
-      if (cuisine.datePosted === date && cuisine.cuisineID === cuisineID) {
-        newArr.push (cuisine);
-      };
-    });
+/* WILL PUSH THE CUISINE INTO NEWARR IF IT MATCHES THE DATE AND TIME */
+cuisineTimeDate.forEach ((timeDate) => {
+  cuisines.forEach ((cuisine) => {
+    if (cuisine.datePosted + ' ' + cuisine.timePosted === timeDate) {
+      newArr.push (cuisine);
+    };
   });
 });
 
@@ -88,5 +84,3 @@ newArr.forEach ((cuisine) => {
     `;
   FEED_LIST_CONTAINER.innerHTML += html
 });  
-
-console.log (newArr)

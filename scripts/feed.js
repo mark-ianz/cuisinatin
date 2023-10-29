@@ -1,8 +1,28 @@
 import { cuisines } from "../data/cuisines.js";
 
+/* BEST SECTION WILL SORT THE FEED BY TOTAL LIKES AND RATINGS */
+
+/* WILL SORT THE RATING COUNT */
+let newArr = [];
+let totalRatingAndLikes = []
+cuisines.forEach ((cuisine) => {
+  totalRatingAndLikes.push (cuisine.ratingCount + cuisine.likes);
+  totalRatingAndLikes.sort ((a, b) => {return b - a  });
+});
+
+/* WILL PUSH TO NEW ARRAY IF IT MATCHES THE RATING COUNT */
+totalRatingAndLikes.forEach ((total) => {
+  cuisines.forEach ((cuisine) => {
+    if (cuisine.ratingCount + cuisine.likes === total) {
+      newArr.push (cuisine);
+    };
+  });
+});
+
+/* WILL GENERATE THE FEED */
 const FEED_LIST_CONTAINER = document.querySelector ('.feed-list');
 
-cuisines.forEach ((cuisine) => {
+newArr.forEach ((cuisine) => {
   const html = 
     `
       <div class="post-container">
@@ -50,6 +70,6 @@ cuisines.forEach ((cuisine) => {
             </div>
         </div>
       </div>
-    `
+    `;
   FEED_LIST_CONTAINER.innerHTML += html
-});
+});  
