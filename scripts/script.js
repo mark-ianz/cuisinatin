@@ -23,12 +23,6 @@ function checkSidebar () {
   }
 }
 
-function keyListener (event) {
-  if (event.key === 'Enter') {
-    location.href = "./webpages/error-page.html"
-  }
-}
-
 const CLOSE_POST_BUTTON = document.querySelector ('.close-button');
 
 CLOSE_POST_BUTTON.addEventListener ('click', history.back);
