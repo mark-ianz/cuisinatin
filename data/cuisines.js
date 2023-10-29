@@ -11,7 +11,8 @@ export const cuisines = [{ /* Adobong Manok */
   authorProfilePicture: '/images/author-profile/steffan-cerri.jfif',
   datePosted: 'October 03, 2023',
   timePosted: '12:32:01',
-  likes: 128
+  likes: 128,
+  keywords: ['adobo', 'manok', 'chicken', 'adobong manok', 'main']
 }, { /* Leche Flan */
   cuisineID: 'b9271b8e-55a6-4b4c-9c1a-dd5aef66e436',
   cuisineName: 'Leche Flan',
@@ -25,7 +26,8 @@ export const cuisines = [{ /* Adobong Manok */
   authorProfilePicture: '/images/author-profile/lebarawn-jemz.webp',
   datePosted: 'October 08, 2023',
   timePosted: '18:21:51',
-  likes: 118
+  likes: 118,
+  keywords: ['dessert', 'desserts', 'leche', 'flan', 'leche flan']
 }, { /* Pork Sisig */
   cuisineID: '9c50cd2e-a966-4fe7-806c-ca9438f7f720',
   cuisineName: 'Pork Sisig',
@@ -39,7 +41,8 @@ export const cuisines = [{ /* Adobong Manok */
   authorProfilePicture: '/images/author-profile/mikal-jerden.jpg',
   datePosted: 'October 06, 2023',
   timePosted: '08:36:45',
-  likes: 91
+  likes: 91,
+  keywords: ['pork', 'sisig', 'baboy', 'pork sisig', 'main']
 }, { /* Pork Menudo */
   cuisineID: '3d548f74-0c00-44d5-bed2-ce8f22114b26',
   cuisineName: 'Pork Menudo',
@@ -53,7 +56,8 @@ export const cuisines = [{ /* Adobong Manok */
   authorProfilePicture: '/images/author-profile/lebarawn-jemz.webp',
   datePosted: 'October 02, 2023',
   timePosted: '02:29:13',
-  likes: 84
+  likes: 84,
+  keywords: ['pork', 'menudo', 'baboy', 'pork menudo', 'main']
 }, { /* Beef Sinigang */
   cuisineID: '50388f7b-ea74-47a0-a2e5-6eaa714a794e',
   cuisineName: 'Beef Sinigang',
@@ -67,7 +71,8 @@ export const cuisines = [{ /* Adobong Manok */
   authorProfilePicture: '/images/author-profile/steffan-cerri.jfif',
   datePosted: 'October 11, 2023',
   timePosted: '12:37:39',
-  likes: 58
+  likes: 58,
+  keywords: ['soup', 'sabaw', 'beef', 'sinigang', 'beef sinigang']
 }, { /* Biko */
   cuisineID: '59d29a91-49f2-45e8-8585-69c739631823',
   cuisineName: 'Biko',
@@ -81,7 +86,8 @@ export const cuisines = [{ /* Adobong Manok */
   authorProfilePicture: '/images/author-profile/mikal-jerden.jpg',
   datePosted: 'October 06, 2023',
   timePosted: '06:12:19',
-  likes: 49
+  likes: 49,
+  keywords: ['dessert', 'desserts', 'biko', 'kakanin']
 }, { /* Bulalo */
   cuisineID: '9c0725dd-ef36-4454-a16b-2f1c019f1c08',
   cuisineName: 'Bulalo',
@@ -95,7 +101,8 @@ export const cuisines = [{ /* Adobong Manok */
   authorProfilePicture: '/images/author-profile/comawas.webp',
   datePosted: 'October 02, 2023',
   timePosted: '20:49:25',
-  likes: 39
+  likes: 39,
+  keywords: ['soup', 'sabaw', 'beef', 'bulalo']
 }, { /* Halo-Halo */
   cuisineID: '0f567cf0-7c47-4ac0-8ee7-f39ad2a8b560',
   cuisineName: 'Halo-Halo',
@@ -109,7 +116,8 @@ export const cuisines = [{ /* Adobong Manok */
   authorProfilePicture: '/images/author-profile/steffan-cerri.jfif',
   datePosted: 'October 11, 2023',
   timePosted: '23:12:35',
-  likes: 32
+  likes: 32,
+  keywords: ['dessert', 'desserts', 'halo', 'halo-halo']
 }, { /* Chicken Sopas */
   cuisineID: '5fa476ab-8663-4359-b3d3-f67ed4d2f2eb',
   cuisineName: 'Chicken Sopas',
@@ -123,5 +131,6 @@ export const cuisines = [{ /* Adobong Manok */
   authorProfilePicture: '/images/author-profile/lebarawn-jemz.webp',
   datePosted: 'October 13, 2023',
   timePosted: '11:20:29',
-  likes: 42
+  likes: 42,
+  keywords: ['soup', 'sabaw', 'chicken', 'sopas', 'chicken sopas', ]
 }];

@@ -245,7 +245,7 @@
 
 .dropdown {
     position: relative;
-  }
+}
   
 .dropdown:hover .dropdown-list {
     display: flex;
@@ -433,6 +433,9 @@
     }
     .logo {
         width: 120px;
+    }
+    .dropdown-list {
+        left: 0;
     }
 }
 
