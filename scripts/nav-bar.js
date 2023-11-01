@@ -1,17 +1,11 @@
-const sidebarElement = document.querySelector ('.sidebar-container');
-const menuElement = document.querySelector ('.hamburger-menu-container');
-const sidebarModalElement = document.querySelector ('.modal-background');
-const RESPONSIVE_SEARCH_IMAGE = document.querySelector ('.responsive-search-image');
-const SIDEBAR_CLOSE_BUTTON_ELEMENT = document.querySelector ('.sidebar-close-button-container');
-const SIDEBAR_SEARCH_BUTTON_ELEMENT = document.querySelector ('.sidebar-search-button');
+export const sidebarElement = document.querySelector ('.sidebar-container');
+export const menuElement = document.querySelector ('.hamburger-menu-container');
+export const sidebarModalElement = document.querySelector ('.modal-background');
+export const RESPONSIVE_SEARCH_IMAGE = document.querySelector ('.responsive-search-image');
+export const SIDEBAR_CLOSE_BUTTON_ELEMENT = document.querySelector ('.sidebar-close-button-container');
+export const SIDEBAR_SEARCH_BUTTON_ELEMENT = document.querySelector ('.sidebar-search-button');
 
-SIDEBAR_CLOSE_BUTTON_ELEMENT.addEventListener ('click', toggleSidebar);
-SIDEBAR_SEARCH_BUTTON_ELEMENT.addEventListener ('click', toggleSidebar);
-RESPONSIVE_SEARCH_IMAGE.addEventListener ('click', toggleSidebar);
-sidebarModalElement.addEventListener ('click', toggleSidebar);
-menuElement.addEventListener ('click', toggleSidebar);
-
-function toggleSidebar () {
+export function toggleSidebar () {
   if (sidebarElement.classList.contains ('sidebar-slide')) {
     sidebarElement.classList.add ('sidebar-hide');
     sidebarModalElement.style.display = 'none';
