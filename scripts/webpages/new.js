@@ -1,27 +1,38 @@
-import { cuisines } from "../data/cuisines.js";
+import { cuisines } from "../../data/cuisines.js";
 
-/* BEST SECTION WILL SORT THE FEED BY TOTAL LIKES AND RATINGS */
-
-/* WILL SORT THE RATING COUNT */
 let newArr = [];
-let totalRatingAndLikes = []
+let cuisineTimeDate = [];
+
+/* WILL CONCATINATE THE DATE POSTED AND TIME POSTED AND PUSH IT TO ARRAY */
 cuisines.forEach ((cuisine) => {
-  totalRatingAndLikes.push (cuisine.ratingCount + cuisine.likes);
-  totalRatingAndLikes.sort ((a, b) => {return b - a  });
+  cuisineTimeDate.push (cuisine.datePosted + ' ' + cuisine.timePosted);
 });
 
-/* WILL PUSH TO NEW ARRAY IF IT MATCHES THE RATING COUNT */
-totalRatingAndLikes.forEach ((total) => {
+/* WILL SORT THE ARRAY OF DATES */
+cuisineTimeDate.sort ((a,b)=> {
+  let date1 = new Date (a);
+  let date2 = new Date (b);
+
+  if (date1<date2) {
+    return 1
+  }
+  else {
+    return -1
+  };
+});
+
+/* WILL PUSH THE CUISINE INTO NEWARR IF IT MATCHES THE DATE AND TIME */
+cuisineTimeDate.forEach ((timeDate) => {
   cuisines.forEach ((cuisine) => {
-    if (cuisine.ratingCount + cuisine.likes === total) {
+    if (cuisine.datePosted + ' ' + cuisine.timePosted === timeDate) {
       newArr.push (cuisine);
     };
   });
 });
 
 /* WILL GENERATE THE FEED */
-export const FEED_LIST_CONTAINER = document.querySelector ('.feed-list');
-export function generateFeed () {
+const FEED_LIST_CONTAINER = document.querySelector ('.feed-list');
+function generateFeed () {
   newArr.forEach ((cuisine) => {
     const html = 
       `

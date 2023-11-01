@@ -1,4 +1,4 @@
-import { cuisines } from "../data/cuisines.js";
+import { cuisines } from "../../data/cuisines.js";
 
 const FEED_LIST_CONTAINER = document.querySelector ('.feed-list');
 

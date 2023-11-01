@@ -1,4 +1,4 @@
-import { cuisines } from "../data/cuisines.js";
+import { cuisines } from "../../data/cuisines.js";
 
 /* WILL SORT THE LIKES */
 let newArr = [];

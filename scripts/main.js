@@ -10,7 +10,7 @@ import {toggleSidebar,
         search,
         sidebarSearch
       } from "./nav-bar.js";
-import { generateFeed } from "./feed.js";
+import { generateFeed } from "./webpages/feed.js";
 
 
 SIDEBAR_CLOSE_BUTTON_ELEMENT.addEventListener ('click', toggleSidebar);

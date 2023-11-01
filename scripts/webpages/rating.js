@@ -1,30 +1,17 @@
-import { cuisines } from "../data/cuisines.js";
+import { cuisines } from "../../data/cuisines.js";
 
+/* WILL SORT THE RATING COUNT */
 let newArr = [];
-let cuisineTimeDate = [];
-
-/* WILL CONCATINATE THE DATE POSTED AND TIME POSTED AND PUSH IT TO ARRAY */
+let cuisineRatingCount = []
 cuisines.forEach ((cuisine) => {
-  cuisineTimeDate.push (cuisine.datePosted + ' ' + cuisine.timePosted);
+  cuisineRatingCount.push (cuisine.ratingCount);
+  cuisineRatingCount.sort ((a, b) => {return b - a  });
 });
 
-/* WILL SORT THE ARRAY OF DATES */
-cuisineTimeDate.sort ((a,b)=> {
-  let date1 = new Date (a);
-  let date2 = new Date (b);
-
-  if (date1<date2) {
-    return 1
-  }
-  else {
-    return -1
-  };
-});
-
-/* WILL PUSH THE CUISINE INTO NEWARR IF IT MATCHES THE DATE AND TIME */
-cuisineTimeDate.forEach ((timeDate) => {
+/* WILL PUSH TO NEW ARRAY IF IT MATCHES THE RATING COUNT */
+cuisineRatingCount.forEach ((ratingCount) => {
   cuisines.forEach ((cuisine) => {
-    if (cuisine.datePosted + ' ' + cuisine.timePosted === timeDate) {
+    if (cuisine.ratingCount === ratingCount) {
       newArr.push (cuisine);
     };
   });
