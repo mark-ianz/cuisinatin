@@ -138,6 +138,7 @@ function generateSearch () {
   });
 }
 
+/* DEFAULT SEARCH */
 function search () {
   const input = SEARCH_BAR_ELEMENT.value.toLowerCase();
   searchArr = [];
@@ -150,16 +151,35 @@ function search () {
     generateSearch ();
   });
 };
-
 SEARCH_BAR_ELEMENT.addEventListener ('keyup', (event) => {
   search ();
   if (event.key === 'Backspace' && SEARCH_BAR_ELEMENT.value === '') {
     generateFeed ();
-  }
+  };
+  if (event.key === 'Enter') {
+    SEARCH_BAR_ELEMENT.value = '';
+  };
 });
+
+/* SIDEBAR SEARCH */
+function sidebarSearch () {
+  const input = SIDEBAR_SEARCH_BAR_ELEMENT.value.toLowerCase();
+  searchArr = [];
+  cuisines.forEach ((cuisine) => {
+    const lowerCuisineName = cuisine.cuisineName.toLowerCase ();
+    if (lowerCuisineName.includes (input) && lowerCuisineName !== '') {
+      searchArr.push (cuisine);
+    }
+    FEED_LIST_CONTAINER.innerHTML = '';
+    generateSearch ();
+  });
+};
 SIDEBAR_SEARCH_BAR_ELEMENT.addEventListener ('keyup', (event) => {
-  search ();
+  sidebarSearch ();
   if (event.key === 'Backspace' && SEARCH_BAR_ELEMENT.value === '') {
     generateFeed ();
-  }
+  };
+  if (event.key === 'Enter') {
+    SIDEBAR_SEARCH_BAR_ELEMENT.value = '';
+  };
 });
