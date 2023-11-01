@@ -21,8 +21,4 @@ function checkSidebar () {
     sidebarElement.classList.remove ('sidebar-slide');
     sidebarElement.classList.remove ('sidebar-hide');
   }
-}
-
-const CLOSE_POST_BUTTON = document.querySelector ('.close-button');
-
-CLOSE_POST_BUTTON.addEventListener ('click', history.back);
+};

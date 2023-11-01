@@ -16,6 +16,10 @@
   width: 150px;
 }
 
+body {
+  scrollbar-gutter: stable;
+}
+
 /* MAIN CONTAINER */
 main {
   color: rgb(215, 218, 220);
@@ -335,7 +339,6 @@ main {
   display: flex;
   flex-direction: column;
   padding: 10px;
- 
 }
 
 .popular-authors {
