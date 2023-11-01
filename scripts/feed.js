@@ -78,6 +78,7 @@ generateFeed ();
 
 /* SEARCH */
 const SEARCH_BAR_ELEMENT = document.querySelector ('.search-bar');
+const SIDEBAR_SEARCH_BAR_ELEMENT = document.querySelector ('.sidebar-search-bar');
 const SEARCH_BUTTON_ELEMENT = document.querySelector ('.search-button');
 SEARCH_BUTTON_ELEMENT.addEventListener ('click', search);
 
@@ -156,5 +157,9 @@ SEARCH_BAR_ELEMENT.addEventListener ('keyup', (event) => {
     generateFeed ();
   }
 });
-
-SEARCH_BUTTON_ELEMENT.addEventListener ('click', search);
+SIDEBAR_SEARCH_BAR_ELEMENT.addEventListener ('keyup', (event) => {
+  search ();
+  if (event.key === 'Backspace' && SEARCH_BAR_ELEMENT.value === '') {
+    generateFeed ();
+  }
+});
