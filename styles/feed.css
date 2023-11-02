@@ -274,6 +274,10 @@ main {
   opacity: .7;
 }
 
+.feed-dropdown {
+  z-index: 100;
+}
+
 /* SIDE CONTENT */
 .side-content {
   display: flex;
@@ -382,6 +386,13 @@ main {
 @media (max-width: 1280px) {
   .side-content {
     top: 100px;
+  }
+}
+
+@media (max-width: 875px) {
+  .sort-dropdown {
+    right: 0;
+    left: auto;
   }
 }
 

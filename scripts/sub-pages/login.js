@@ -1,20 +1,27 @@
-const openEyeImage = document.querySelector ('.js-open-eye');
-const closeEyeImage = document.querySelector ('.js-close-eye');
 const passwordInput = document.querySelector ('.js-password');
-const usernameInput = document.querySelector ('.js-username');
-const usernameWarning = document.querySelector ('.js-username-warning')
-const passwordWarning = document.querySelector ('.js-password-warning')
+const showPasswordCheckbox = document.querySelector ('.js-show-password-checkbox');
+const showPasswordLabel = document.querySelector ('.js-show-password-label');
+const ew = document.querySelector ('.login');
+
 
 function togglePassword () {
-  if (passwordInput.type === 'password') {
-    openEyeImage.style.display = "none";
-    closeEyeImage.style.display = "block";
+  if (showPasswordCheckbox.checked === true) {
     passwordInput.type = 'text';
   }
-  else if (passwordInput.type === 'text') {
-    closeEyeImage.style.display = "none";
-    openEyeImage.style.display = "block";
+  else {
     passwordInput.type = 'password';
   }
-}
+};
 
+showPasswordCheckbox.addEventListener ('click', togglePassword);
+
+showPasswordLabel.addEventListener ('click', ()=> {
+  if (showPasswordCheckbox.checked === true) {
+    showPasswordCheckbox.checked = false;
+    togglePassword ();
+  }
+  else {
+    showPasswordCheckbox.checked = true;
+    togglePassword ();
+  }
+})

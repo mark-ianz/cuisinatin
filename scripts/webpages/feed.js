@@ -18,7 +18,6 @@ totalRatingAndLikes.forEach ((total) => {
     };
   });
 });
-
 /* WILL GENERATE THE FEED */
 export const FEED_LIST_CONTAINER = document.querySelector ('.feed-list');
 export function generateFeed () {
@@ -73,5 +72,5 @@ export function generateFeed () {
       `;
     FEED_LIST_CONTAINER.innerHTML += html
   });
-}
+};
 generateFeed ();
