@@ -1,27 +1,28 @@
-const passwordInput = document.querySelector ('.js-password');
-const showPasswordCheckbox = document.querySelector ('.js-show-password-checkbox');
-const showPasswordLabel = document.querySelector ('.js-show-password-label');
-const ew = document.querySelector ('.login');
+import { accounts } from "../../data/account.js";
 
+const PASSWORD_INPUT = document.querySelector ('.js-password');
+const CONFIRM_PASSWORD_INPUT = document.querySelector ('.js-confirm-password');
+const SHOW_PASSWORD_CHECKBOX = document.querySelector ('.js-show-password-checkbox');
+const SHOW_PASSWORD_LABEL = document.querySelector ('.js-show-password-label');
 
 function togglePassword () {
-  if (showPasswordCheckbox.checked === true) {
-    passwordInput.type = 'text';
+  if (SHOW_PASSWORD_CHECKBOX.checked === true) {
+    PASSWORD_INPUT.type = 'text';
   }
   else {
-    passwordInput.type = 'password';
-  }
+    PASSWORD_INPUT.type = 'password';
+  };
 };
 
-showPasswordCheckbox.addEventListener ('click', togglePassword);
+SHOW_PASSWORD_CHECKBOX.addEventListener ('click', togglePassword);
 
-showPasswordLabel.addEventListener ('click', ()=> {
-  if (showPasswordCheckbox.checked === true) {
-    showPasswordCheckbox.checked = false;
+SHOW_PASSWORD_LABEL.addEventListener ('click', ()=> {
+  if (SHOW_PASSWORD_CHECKBOX.checked === true) {
+    SHOW_PASSWORD_CHECKBOX.checked = false;
     togglePassword ();
   }
   else {
-    showPasswordCheckbox.checked = true;
+    SHOW_PASSWORD_CHECKBOX.checked = true;
     togglePassword ();
-  }
-})
+  };
+});
