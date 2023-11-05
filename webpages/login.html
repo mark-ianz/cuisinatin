@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="./images/favicon/favicon-white.svg" type="image/x-icon">
     <link rel="stylesheet" href="../styles/general.css">
-    <link rel="stylesheet" href="../styles/login.css">
+    <link rel="stylesheet" href="../styles/login-signup.css">
     <title>Cuisinatin | Filipino Cuisines</title>
 </head>
 <body>
@@ -22,55 +22,58 @@
       <img src="../images/login-background.jpg" alt="Error" class="background-image">
     </div>
 
-    <!-- LOGIN SECTION -->
+    <!-- SECTION -->
     <div class="login-section">
 
-      <!-- LOGIN CONTAINER -->
+      <!-- CONTAINER -->
       <div class="login-container">
         <!-- TOP SIDE OF CONTAINER -->
         <div class="top-side">
           <div class="logo-container">
-            <img src="../images/logo/logo-black.svg" class="logo">
-          </div>
-          <div>
-            <p class="login">
-              Log in
-            </p>
+            <a href="./feed.html">
+              <img src="../images/logo/logo-white.svg" class="logo">
+            </a>
           </div>
         </div>
-        
-        <div class="hr"></div>
-
-        <!-- MIDDLE SIDE OF CONTAINER (LOG IN INPUT) -->
+      
+        <!-- MIDDLE SIDE OF CONTAINER (INPUT) -->
         <div class="middle-side">
-          <div class="input-container">
-            <input type="text" class="js-username text-input" placeholder="Username">
-            <p class="js-username-warning warning">
-              Please fill this field out.
-            </p>
-            <div class="password-container">
-              <input type="password" class="js-password password-input" placeholder="Password">
-              <img src="../images/open-eye.png" class="js-open-eye show-pw" onclick="togglePassword()">
-              <img src="../images/close-eye.png" class="js-close-eye hide-pw" onclick="togglePassword()">
+          <p class="title">
+            Log in
+          </p>
+          <form class="js-login-form" action="../index.html">
+            <div class="input-container">
+              <input type="text" class="js-email" placeholder="Email" required>
+              <input type="password" class="js-password" placeholder="Password" required>
             </div>
-            <p class="js-password-warning warning">
-              Please fill this field out.
-            </p>
-          </div>
-          <div class="login-button-container">
-            <button class="login-button" onclick="login()">
-              Log in
-            </button>
-            <div class="forgot-password-container">
+            <p class="error-message js-error-message"></p>
+            <button class="login-button js-login-button">Login</button>
+            <div class="password-info">
+              <div class="show-password">
+                <input type="checkbox" name="show-password" class="js-show-password-checkbox">
+                <label for="show-password" class="js-show-password-label">
+                  Show Password
+                </label>
+              </div>
               <a href="" class="forgot-password">
                 Forgot password?
               </a>
             </div>
-          </div>
+          </form>
+        </div>
+
+        <!-- BOTTOM SIDE OF CONTAINER (OPTIONS) -->
+        <div class="bot-side">
+          <p>
+            Don't have an account yet?
+          </p>
+          <a href="./signup.html">
+            Sign up now!
+          </a>
         </div>
       </div>
     </div>
   </div>
-  <script src="../scripts/login.js"></script>
+  <script type="module" src="../scripts/sub-pages/login.js"></script>
 </body>
 </html>

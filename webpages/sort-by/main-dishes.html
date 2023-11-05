@@ -19,12 +19,12 @@
     <title>Cuisinatin | Filipino Cuisines</title>    
 </head>
 <body>
-    <div class="modal-background" onclick="toggleSidebar ();">
+    <div class="modal-background">
     </div>
     <div class="navs">
         <nav class="header-navigation">
             <div class="top-left-container">
-                <div class="hamburger-menu-container" onclick="toggleSidebar ()">
+                <div class="hamburger-menu-container">
                     <img src="../../images/hamburger-menu.png" class="hamburger-menu">
                 </div>
                 <a href="../../index.html">
@@ -33,14 +33,14 @@
             </div>
             <div class="top-right-container">
                 <div class="search-container">
-                    <form class="search-bar-container">
-                        <input type="text" placeholder="Search for cuisines" class="search-bar">
+                    <div class="search-bar-container">
+                        <input type="text" placeholder="Search for cuisines" class="search-bar js-search-bar">
                         <button class="search-button">
                             <img src="../../images/search.svg" class="search-image">
                         </button>
-                    </form>
+                    </div>
                     <button class="responsive-search-button">
-                        <img src="../../images/search.svg" class="responsive-search-image" onclick="toggleSidebar ()">
+                        <img src="../../images/search.svg" class="responsive-search-image">
                     </button>
                 </div>
                 <div class="login-container">
@@ -59,17 +59,17 @@
                         <img src="../../images/logo/logo-white.svg" class="sidebar-logo">
                     </a>  
                 </div>
-                <form class="sidebar-search-container">
+                <div class="sidebar-search-container">
                     <div class="search-nav-text">
                         <b>Search</b>
                     </div>
                     <div class="sidebar-search-bar-container">
-                        <input type="text" class="sidebar-search-bar" placeholder="Search for cuisines">
+                        <input type="text" class="sidebar-search-bar js-search-bar" placeholder="Search for cuisines">
                         <button class="sidebar-search-button">
                             <img src="../../images/search.svg" class="sidebar-search-image">
                         </button>
                     </div> 
-                </form>
+                </div>
                 <div class="navigations">
                     <a href="../../index.html">
                         <div class="nav-list">
@@ -169,7 +169,7 @@
                     </div>
                 </div>
             </div>
-            <div class="sidebar-close-button-container" onclick="toggleSidebar ()">
+            <div class="sidebar-close-button-container">
                 <img src="../../images/close-button.png" class="sidebar-close-button">
             </div>
         </nav>
@@ -225,7 +225,7 @@
                                 </p>
                             </button>
                         </a>
-                        <div class="dropdown">
+                        <div class="dropdown feed-dropdown">
                             <div class="nav-list">
                                 <p class="active-sort-cuisine">
                                     Filipino Main Dishes
@@ -253,155 +253,7 @@
                     </div>
                 </div>
             </div>
-            <div class="feed-list">
-                <div class="post-container">
-                    <div class="image-container">
-                        <a href="../posts/adobong-manok.html">
-                            <img src="../../images/foods/adobong-manok.jpg">
-                        </a>
-                    </div>
-                    <div class="description-container">
-                        <a href="../posts/adobong-manok.html">
-                            <div class="food-info">
-                                <p class="food-name">
-                                    Adobong Manok
-                                </p>
-                                <div class="flex-row">
-                                    <div class="rating-container">
-                                        <img src="../../images/star-solid.svg" class="rating">
-                                        <img src="../../images/star-solid.svg" class="rating">
-                                        <img src="../../images/star-solid.svg" class="rating">
-                                        <img src="../../images/star-solid.svg" class="rating">
-                                        <img src="../../images/star-solid.svg" class="rating">
-                                    </div>
-                                    <p class="rating-counter">(89)</p>
-                                </div>
-                            </div>
-                        </a>
-                        <div class="author-info">
-                            <div class="flex-row">
-                                <a href="./users/steph.html">
-                                    <img src="../../images/author-profile/steffan-cerri.jfif" class="author-picture">
-                                </a>
-                                <div>
-                                    <a href="./users/steph.html">
-                                        Author: Stefan Cerri
-                                    </a>
-                                    <p>
-                                        October 03, 2023
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="flex-row">
-                                <button class="like-button">
-                                    <img src="../../images/heart-regular.svg" class="like-image">
-                                </button>
-                                <p class="like-counter">
-                                    (128)
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="post-container">
-                    <div class="image-container">
-                        <a href="../posts/pork-sisig.html">
-                            <img src="../../images/foods/sizzling-pork-sisig.avif">
-                        </a>
-                    </div>
-                    <div class="description-container">
-                        <a href="../posts/pork-sisig.html">
-                            <div class="food-info">
-                                <p class="food-name">
-                                    Pork Sisig
-                                </p>
-                                <div class="flex-row">
-                                    <div class="rating-container">
-                                        <img src="../../images/star-solid.svg" class="rating">
-                                        <img src="../../images/star-solid.svg" class="rating">
-                                        <img src="../../images/star-solid.svg" class="rating">
-                                        <img src="../../images/star-solid.svg" class="rating">
-                                        <img src="../../images/star-half.svg" class="rating">
-                                    </div>
-                                    <p class="rating-counter">(62)</p>
-                                </div>
-                            </div>
-                        </a>
-                        <div class="author-info">
-                            <div class="flex-row">
-                                <a href="./users/jordan.html">
-                                    <img src="../../images/author-profile/mikal-jerden.jpg" class="author-picture">
-                                </a>
-                                <div>
-                                    <a href="./users/jordan.html">
-                                        Author: Mikal Jerden
-                                    </a>
-                                    <p>
-                                        October 06, 2023
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="flex-row">
-                                <button class="like-button">
-                                    <img src="../../images/heart-regular.svg" class="like-image">
-                                </button>
-                                <p class="like-counter">
-                                    (91)
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="post-container">
-                    <div class="image-container">
-                        <a href="../posts/pork-menudo.html">
-                            <img src="../../images/foods/pork-menudo.png">
-                        </a>
-                    </div>
-                    <div class="description-container">
-                        <a href="../posts/pork-menudo.html">
-                            <div class="food-info">
-                                <p class="food-name">
-                                    Pork Menudo
-                                </p>
-                                <div class="flex-row">
-                                    <div class="rating-container">
-                                        <img src="../../images/star-solid.svg" class="rating">
-                                        <img src="../../images/star-solid.svg" class="rating">
-                                        <img src="../../images/star-solid.svg" class="rating">
-                                        <img src="../../images/star-solid.svg" class="rating">
-                                        <img src="../../images/star-half.svg" class="rating">
-                                    </div>
-                                    <p class="rating-counter">(58)</p>
-                                </div>
-                            </div>
-                        </a>
-                        <div class="author-info">
-                            <div class="flex-row">
-                                <a href="./users/lebron.html">
-                                    <img src="../../images/author-profile/lebarawn-jemz.webp" class="author-picture">
-                                </a>
-                                <div>
-                                    <a href="./users/lebron.html">
-                                        Author: LeBrawn Jemz
-                                    </a>
-                                    <p>
-                                        October 02, 2023
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="flex-row">
-                                <button class="like-button">
-                                    <img src="../../images/heart-regular.svg" class="like-image">
-                                </button>
-                                <p class="like-counter">
-                                    (84)
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="feed-list"></div>
         </div>
         <div class="side-content">
             <div class="flex-column">
@@ -489,6 +341,7 @@
         </div>
       </div>
     </main>
-    <script src="../../scripts/script.js"></script>
+    <script type="module" src="../../scripts/main.js"></script>
+    <script type="module" src="../../scripts/webpages/main-dishes.js"></script>
 </body>
 </html>
