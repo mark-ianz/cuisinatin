@@ -41,12 +41,13 @@
           <p class="title">
             Log in
           </p>
-          <form action="../index.html">
+          <form class="js-login-form" action="../index.html">
             <div class="input-container">
               <input type="text" class="js-email" placeholder="Email" required>
               <input type="password" class="js-password" placeholder="Password" required>
             </div>
-            <button class="login-button">Login</button>
+            <p class="error-message js-error-message"></p>
+            <button class="login-button js-login-button">Login</button>
             <div class="password-info">
               <div class="show-password">
                 <input type="checkbox" name="show-password" class="js-show-password-checkbox">
@@ -73,6 +74,6 @@
       </div>
     </div>
   </div>
-  <script src="../scripts/sub-pages/login.js"></script>
+  <script type="module" src="../scripts/sub-pages/login.js"></script>
 </body>
 </html>
