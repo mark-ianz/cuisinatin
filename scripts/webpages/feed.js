@@ -38,7 +38,7 @@ export function generateFeed () {
                       </p>
                       <div class="flex-row">
                           <div class="rating-container">
-                              <img src="/images/ratings/rating-${(cuisine.rating * 10)}.png" class="rating">
+                              <img src="../images/ratings/rating-${(cuisine.rating * 10)}.png" class="rating">
                           </div>
                           <p class="rating-counter">(${cuisine.ratingCount})</p>
                       </div>
@@ -60,7 +60,7 @@ export function generateFeed () {
                   </div>
                   <div class="flex-row">
                       <button class="like-button">
-                          <img src="/images/heart-regular.svg" class="like-image">
+                          <img src="../images/heart-regular.svg" class="like-image">
                       </button>
                       <p class="like-counter">
                           (${cuisine.likes})
@@ -73,4 +73,4 @@ export function generateFeed () {
     FEED_LIST_CONTAINER.innerHTML += html
   });
 };
-generateFeed ();
+/* generateFeed (); */

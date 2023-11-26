@@ -1,3 +1,14 @@
+<?php
+    include_once ('../connection/config.php');
+
+    $conn = connect ();
+
+    $sql = "SELECT * FROM cuisines";
+    $cuisine = $conn->query($sql) or die ($conn->error);
+
+    $row = $cuisine->fetch_assoc();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -252,7 +263,11 @@
                 </div>
             </div>
             <div class="feed-list">
-                <?php ?>
+                <?php do {?>
+                    <p>Cuisine Name: <?php echo $row ['cuisine_name']; ?></p>
+                    <p>Likes: <?php echo $row ['cuisine_total_likes']; ?></p>
+                    <p>Ratings: <?php echo $row ['cuisine_total_ratings']; ?></p>
+                <?php } while ($row = $cuisine->fetch_assoc()); ?>
             </div>
         </div>
         <div class="side-content">
