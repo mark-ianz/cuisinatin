@@ -251,7 +251,9 @@
                     </div>
                 </div>
             </div>
-            <div class="feed-list"></div>
+            <div class="feed-list">
+                <?php ?>
+            </div>
         </div>
         <div class="side-content">
             <div class="flex-column">
