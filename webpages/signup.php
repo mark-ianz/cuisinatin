@@ -1,3 +1,14 @@
+<?php
+  if (!isset($_SESSION)) {
+    session_start();
+  } else {
+    header("Location: feed.php");
+  }
+
+  include_once ('../connection/config.php');
+  $conn = connect();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +41,7 @@
         <!-- TOP SIDE OF CONTAINER -->
         <div class="top-side">
           <div class="logo-container">
-            <a href="./feed.html">
+            <a href="./feed.php">
               <img src="../images/logo/logo-white.svg" class="logo">
             </a>
           </div>
@@ -41,21 +52,21 @@
           <p class="title">
             Signup
           </p>
-          <form action="./login.html" class="js-signup-form">
+          <form action="<?php $_SERVER ['PHP_SELF'] ?>" class="js-signup-form" method="post">
             <div class="input-container">
               <div class="flex-row">
-                <input type="text" class="name-input js-first-name-input" placeholder="First Name" required maxlength="50">
-                <input type="text" class="name-input js-last-name-input" placeholder="Last Name" required maxlength="50">
+                <input type="text" name="fname" class="name-input js-first-name-input" placeholder="First Name" required maxlength="50">
+                <input type="text" name="lname" class="name-input js-last-name-input" placeholder="Last Name" required maxlength="50">
               </div>
-              <input type="email" class="js-email-input" placeholder="Email" required maxlength="50">
+              <input type="email" name="email" class="js-email-input" placeholder="Email" required maxlength="50">
               <div class="flex-row">
-                <input type="password" class="js-password password-input" placeholder="Password" required minlength="8" maxlength="50">
+                <input type="password" name="password" class="js-password password-input" placeholder="Password" required minlength="8" maxlength="50">
                 <input type="password" class="js-confirm-password password-input" placeholder="Confirm Password" required>
               </div>
             </div>
             <div class="security-question-container">
               <div class="flex-row">
-                <select name="security-question" required class="select-security-question js-question-1">
+                <select name="sq1" required class="select-security-question js-question-1">
                   <option value="">
                     Security question #1
                   </option>
@@ -93,10 +104,10 @@
                     Set a code of your choice
                   </option>
                 </select>
-                <input type="text" class="answer-input js-answer-1" placeholder="Input your answer" required maxlength="20">
+                <input type="text" name="sa1" class="answer-input js-answer-1" placeholder="Input your answer" required maxlength="100">
               </div>
               <div class="flex-row">
-                <select name="security-question" required class="select-security-question js-question-2">
+                <select name="sq2" required class="select-security-question js-question-2">
                   <option value="">
                     Security question #2
                   </option>
@@ -134,10 +145,10 @@
                     Set a code of your choice
                   </option>
                 </select>
-                <input type="text" class="answer-input js-answer-2" placeholder="Input your answer" required maxlength="20">
+                <input type="text" name="sa2" class="answer-input js-answer-2" placeholder="Input your answer" required maxlength="100">
               </div>
               <div class="flex-row">
-                <select name="security-question" required class="select-security-question js-question-3">
+                <select name="sq3" required class="select-security-question js-question-3">
                   <option value="">
                     Security question #3
                   </option>
@@ -175,11 +186,38 @@
                     Set a code of your choice
                   </option>
                 </select>
-                <input type="text" class="answer-input js-answer-3" placeholder="Input your answer" required maxlength="20">
+                <input type="text" name="sa3" class="answer-input js-answer-3" placeholder="Input your answer" required maxlength="100">
               </div>
             </div>
-            <p class="error-message js-error-message"></p>
-            <button class="signup-button js-signup-button">Signup</button>
+            <p class="error-message js-error-message">
+              <?php
+                try {
+                  if (isset ($_POST ['submit'])) {
+                    $first_name = $_POST ['fname'];
+                    $last_name = $_POST ['lname'];
+                    $email = $_POST ['email'];
+                    $password = password_hash($_POST ['password'], PASSWORD_DEFAULT);
+                    $pf_pic = "None";
+                    $sq1 = $_POST ['sq1'];
+                    $sq2 = $_POST ['sq2'];
+                    $sq3 = $_POST ['sq3'];
+                    $sa1 = strtolower($_POST ['sa1']);
+                    $sa2 = strtolower($_POST ['sa2']);
+                    $sa3 = strtolower($_POST ['sa3']);
+                
+                    $sql = "INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `email`, `password`, `profile_pic`, `sq1`, `sq2`, `sq3`, `sa1`, `sa2`, `sa3`)
+                      VALUES (NULL, '$first_name', '$last_name', '$email', '$password', '$pf_pic', '$sq1', '$sq2', '$sq3', '$sa1', '$sa2', '$sa3');";
+                
+                    $conn->query($sql) or die ($conn->error);
+                
+                    echo "<script>location.href='login.php'</script>";
+                  }
+                } catch (mysqli_sql_exception) {
+                  echo "Email is already taken.";
+                }
+              ?>
+            </p>
+            <button type="submit" name="submit" class="signup-button js-signup-button">Signup</button>
             <div class="password-info">
               <div class="show-password">
                 <input type="checkbox" name="show-password" class="js-show-password-checkbox">
@@ -196,7 +234,7 @@
           <p>
             Already have an account?
           </p>
-          <a href="./login.html">
+          <a href="./login.php">
             Login now!
           </a>
         </div>

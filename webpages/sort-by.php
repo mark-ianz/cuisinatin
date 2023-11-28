@@ -1,15 +1,42 @@
 <?php
-	if (!isset($_SESSION)) {
-		session_start();
-	};
+if (!isset($_SESSION)) {
+	session_start();
+};
 
-	include_once('../connection/config.php');
+include_once('../connection/config.php');
 
-	$conn = connect();
+$conn = connect();
+$sort = $_GET ['sort'];
 
-	$sql = "SELECT * FROM cuisines";
-	$cuisine = $conn->query($sql) or die($conn->error);
-	$cuisineRow = $cuisine->fetch_assoc();
+switch ($sort) {
+  case 'best':
+    $sql = "SELECT * FROM cuisines ORDER BY likes + total_ratings DESC";
+    break;
+  case 'likes':
+    $sql = "SELECT * FROM cuisines ORDER BY likes DESC";
+    break;
+  case 'rating':
+    $sql = "SELECT * FROM cuisines ORDER BY total_ratings DESC";
+    break;
+  case 'new':
+    $sql = "SELECT * FROM cuisines ORDER BY date_posted DESC";
+    break;
+  case 'main-dishes':
+    $sql = "SELECT * FROM cuisines WHERE cuisine_type = 'Filipino Main Dishes'";
+    break;
+  case 'soups-stews':
+    $sql = "SELECT * FROM cuisines WHERE cuisine_type = 'Filipino Soups and Stews'";
+    break;
+  case 'desserts':
+    $sql = "SELECT * FROM cuisines WHERE cuisine_type = 'Filipino Desserts'";
+    break;
+  default:
+    $sql = "SELECT * FROM cuisines";
+}
+
+
+  $cuisine = $conn->query($sql) or die($conn->error);
+  $cuisineRow = $cuisine->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
@@ -51,13 +78,7 @@
 								<img src="../images/user-solid-white.svg" class="author-picture">
 							<?php } ?>
 						</button>
-						<a href="
-							<?php if (isset($_SESSION ['user_id'])) {
-								echo "./add-recipe.php";
-							} else {
-								echo "./login.php";
-							} ?>"
-						class="create-post-input-container">
+						<a href="./add-recipe.html" class="create-post-input-container">
 							<input type="text" placeholder="Create Post" class="create-post-input">
 						</a>
 					</div>
@@ -67,7 +88,7 @@
 						</p>
 						<div class="sort-buttons-container">
 							<a href="./sort-by.php?sort=best">
-								<button class="sort-button">
+								<button class="<?php if($sort == 'best') { echo "active-";} ?>sort-button">
 									<img src="../images/medal-regular.svg">
 									<p>
 										Best
@@ -75,7 +96,7 @@
 								</button>
 							</a>
 							<a href="./sort-by.php?sort=likes">
-								<button class="sort-button">
+								<button class="<?php if($sort == 'likes') { echo "active-";} ?>sort-button">
 									<img src="../images/heart-regular.svg">
 									<p>
 										Likes
@@ -83,7 +104,7 @@
 								</button>
 							</a>
 							<a href="./sort-by.php?sort=rating">
-								<button class="sort-button">
+								<button class="<?php if($sort == 'rating') { echo "active-";} ?>sort-button">
 									<img src="../images/star-regular.svg">
 									<p>
 										Rating
@@ -91,7 +112,7 @@
 								</button>
 							</a>
 							<a href="./sort-by.php?sort=new">
-								<button class="sort-button">
+								<button class="<?php if($sort == 'new') { echo "active-";} ?>sort-button">
 									<img src="../images/sparkles-regular.svg">
 									<p>
 										New
@@ -127,7 +148,7 @@
 					</div>
 				</div>
 				<div class="feed-list">
-					<?php do { ?>
+					<?php if (isset ($cuisineRow)) { do { ?>
 						<div class="post-container">
 							<div class="image-container">
 								<a href="./posts.php?id=<?php echo $cuisineRow['cuisine_id'] ?>">
@@ -223,9 +244,9 @@
 									</div>
 								</div>
 							</div>
-							<?php echo $cuisineRow ['cuisine_type'] ?>
 						</div>
-					<?php } while ($cuisineRow = $cuisine->fetch_assoc()); ?>
+					<?php } while ($cuisineRow = $cuisine->fetch_assoc()); } else { ?>
+          <?php echo "No cuisine matched your search."; }?>
 				</div>
 			</div>
 			<?php

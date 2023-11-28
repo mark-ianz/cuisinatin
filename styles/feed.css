@@ -230,8 +230,8 @@ main {
 .author-picture {
   border-radius: 50%;
   cursor: pointer;
-  height: 45px;
-  width: 45px;
+  height: 35px;
+  width: 35px;
 }
 
 .author-picture:hover {
@@ -275,7 +275,7 @@ main {
 }
 
 .feed-dropdown {
-  z-index: 100;
+  z-index: 0;
 }
 
 /* SIDE CONTENT */

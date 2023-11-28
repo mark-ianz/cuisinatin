@@ -1,1 +1,0 @@
-export let accounts = JSON.parse (localStorage.getItem ('accounts')) || [];

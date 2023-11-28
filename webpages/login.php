@@ -1,3 +1,16 @@
+<?php
+  if (!isset($_SESSION)) {
+    session_start();
+  }
+
+  if (isset ($_SESSION ['user_id'])) {
+    header("Location: feed.php");
+  }
+
+  include_once ('../connection/config.php');
+  $conn = connect();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +43,7 @@
         <!-- TOP SIDE OF CONTAINER -->
         <div class="top-side">
           <div class="logo-container">
-            <a href="./feed.html">
+            <a href="./feed.php">
               <img src="../images/logo/logo-white.svg" class="logo">
             </a>
           </div>
@@ -41,13 +54,45 @@
           <p class="title">
             Log in
           </p>
-          <form class="js-login-form" action="../index.html">
+          <form class="js-login-form" action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
             <div class="input-container">
-              <input type="text" class="js-email" placeholder="Email" required>
-              <input type="password" class="js-password" placeholder="Password" required>
+              <input type="text" name="email" class="js-email" placeholder="Email" required>
+              <input type="password" name="password" class="js-password" placeholder="Password" required>
             </div>
-            <p class="error-message js-error-message"></p>
-            <button class="login-button js-login-button">Login</button>
+            <p class="error-message js-error-message">
+              <?php
+                if (isset ($_POST['submit'])) {
+                  $email = $_POST ['email'];
+                  $password = $_POST ['password'];
+
+                  $sql = "SELECT * FROM users WHERE email = '$email'";
+
+                  $user = $conn->query($sql) or die ($conn->error);
+
+                  $row = $user->fetch_assoc();
+
+                  $total = $user->num_rows;
+
+                  if (isset ($row ['email'])) {
+                    if ($email == $row ['email'] && password_verify($password, $row ['password'])) {
+                      $_SESSION ['access'] = $row ['access'];
+                      $_SESSION ['user_id'] = $row ['user_id'];
+                      $_SESSION ['first_name'] = $row ['first_name'];
+                      $_SESSION ['last_name'] = $row ['last_name'];
+                      $_SESSION ['email'] = $row ['email'];
+                      $_SESSION ['profile_pic'] = $row ['profile_pic'];
+
+                      header("Location: feed.php");
+                    } else {
+                      echo "Incorrect email or password";
+                    }
+                  } else {
+                    echo "Incorrect email or password";
+                  }
+                }
+              ?>
+            </p>
+            <button type="submit" name="submit" class="login-button js-login-button">Login</button>
             <div class="password-info">
               <div class="show-password">
                 <input type="checkbox" name="show-password" class="js-show-password-checkbox">
@@ -67,7 +112,7 @@
           <p>
             Don't have an account yet?
           </p>
-          <a href="./signup.html">
+          <a href="./signup.php">
             Sign up now!
           </a>
         </div>
