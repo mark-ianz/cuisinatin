@@ -1,7 +1,7 @@
 const sidebarElement = document.querySelector ('.sidebar-container');
 const menuElement = document.querySelector ('.hamburger-menu-container');
 const sidebarModalElement = document.querySelector ('.modal-background');
-const RESPONSIVE_SEARCH_IMAGE = document.querySelector ('.responsive-search-image');
+const RESPONSIVE_SEARCH_BUTTON = document.querySelectorAll ('.responsive-search-button');
 const SIDEBAR_CLOSE_BUTTON_ELEMENT = document.querySelector ('.sidebar-close-button-container');
 const SIDEBAR_SEARCH_BUTTON_ELEMENT = document.querySelector ('.sidebar-search-button');
 const FEED_LIST_CONTAINER = document.querySelector ('.feed-list');
@@ -26,6 +26,11 @@ function checkSidebar () {
   }
 };
 
+
+
 menuElement.addEventListener ('click', toggleSidebar);
 SIDEBAR_CLOSE_BUTTON_ELEMENT.addEventListener ('click', toggleSidebar);
 sidebarModalElement.addEventListener ('click', toggleSidebar);
+RESPONSIVE_SEARCH_BUTTON.forEach((button) => {
+  button.addEventListener ('click', toggleSidebar);
+});

@@ -21,12 +21,12 @@
 			</div>
 			<div class="top-right-container">
 				<div class="search-container">
-					<div class="search-bar-container">
-						<input type="text" placeholder="Search for cuisines" class="search-bar js-search-bar">
-						<button class="search-button">
+					<form action="./result.php" method="get" class="search-bar-container">
+						<input type="text" name="search" placeholder="Search for cuisines" class="search-bar">
+						<button type="submit" name="submit" class="search-button">
 							<img src="../images/search.svg" class="search-image">
 						</button>
-					</div>
+					</form>
 					<button class="responsive-search-button">
 						<img src="../images/search.svg" class="responsive-search-image">
 					</button>
@@ -62,12 +62,12 @@
 					<div class="search-nav-text">
 						<b>Search</b>
 					</div>
-					<div class="sidebar-search-bar-container">
-						<input type="text" class="sidebar-search-bar js-search-bar" placeholder="Search for cuisines">
-						<button class="sidebar-search-button">
+					<form action="./result.php" method="get" class="sidebar-search-bar-container">
+						<input type="text" name="search" class="sidebar-search-bar" placeholder="Search for cuisines">
+						<button type="submit" name="submit" class="sidebar-search-button">
 							<img src="../images/search.svg" class="sidebar-search-image">
 						</button>
-					</div>
+					</form>
 				</div>
 				<div class="navigations">
 					<a href="../index.php">
@@ -195,12 +195,12 @@
 			</div>
 			<div class="top-right-container">
 				<div class="search-container">
-					<div class="search-bar-container">
-						<input type="text" placeholder="Search for cuisines" class="search-bar js-search-bar">
-						<button class="search-button">
+					<form action="./webpages/result.php" method="get" class="search-bar-container">
+						<input type="text" name="search" placeholder="Search for cuisines" class="search-bar">
+						<button type="submit" name="submit" class="search-button">
 							<img src="./images/search.svg" class="search-image">
 						</button>
-					</div>
+					</form>
 					<button class="responsive-search-button">
 						<img src="./images/search.svg" class="responsive-search-image">
 					</button>
@@ -236,12 +236,12 @@
 					<div class="search-nav-text">
 						<b>Search</b>
 					</div>
-					<div class="sidebar-search-bar-container">
-						<input type="text" class="sidebar-search-bar js-search-bar" placeholder="Search for cuisines">
-						<button class="sidebar-search-button">
+					<form action="./webpages/result.php" method="get" class="sidebar-search-bar-container">
+						<input type="text" name="search" class="sidebar-search-bar" placeholder="Search for cuisines">
+						<button type="submit" name="submit" class="sidebar-search-button">
 							<img src="./images/search.svg" class="sidebar-search-image">
 						</button>
-					</div>
+					</form>
 				</div>
 				<div class="navigations">
 					<a href="<?php $_SERVER['PHP_SELF'] ?>">
