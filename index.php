@@ -51,6 +51,5 @@
           </a>
       </div>
   </main>
-  <script src="./scripts/nav-bar.js"></script>
 </body>
 </html>

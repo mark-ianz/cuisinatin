@@ -8,6 +8,7 @@
   }
 
   include_once ('../connection/config.php');
+  include_once ('./util/functions.php');
   $conn = connect();
 ?>
 
@@ -27,6 +28,7 @@
     <title>Cuisinatin | Filipino Cuisines</title>
 </head>
 <body>
+
   <!-- MAIN CONTAINER -->
   <div class="main-container">
 
@@ -56,42 +58,16 @@
           </p>
           <form class="js-login-form" action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
             <div class="input-container">
-              <input type="text" name="email" class="js-email" placeholder="Email" required>
+              <input type="text" 
+                <?php
+                  if (isset($_POST['email'])) {
+                    echo "value=".$_POST['email'];
+                  }
+                ?>
+              name="email" class="js-email" placeholder="Email" required>
               <input type="password" name="password" class="js-password" placeholder="Password" required>
             </div>
-            <p class="error-message js-error-message">
-              <?php
-                if (isset ($_POST['submit'])) {
-                  $email = $_POST ['email'];
-                  $password = $_POST ['password'];
-
-                  $sql = "SELECT * FROM users WHERE email = '$email'";
-
-                  $user = $conn->query($sql) or die ($conn->error);
-
-                  $row = $user->fetch_assoc();
-
-                  $total = $user->num_rows;
-
-                  if (isset ($row ['email'])) {
-                    if ($email == $row ['email'] && password_verify($password, $row ['password'])) {
-                      $_SESSION ['access'] = $row ['access'];
-                      $_SESSION ['user_id'] = $row ['user_id'];
-                      $_SESSION ['first_name'] = $row ['first_name'];
-                      $_SESSION ['last_name'] = $row ['last_name'];
-                      $_SESSION ['email'] = $row ['email'];
-                      $_SESSION ['profile_pic'] = $row ['profile_pic'];
-
-                      header("Location: feed.php");
-                    } else {
-                      echo "Incorrect email or password";
-                    }
-                  } else {
-                    echo "Incorrect email or password";
-                  }
-                }
-              ?>
-            </p>
+            <p class="error-message js-error-message"></p>
             <button type="submit" name="submit" class="login-button js-login-button">Login</button>
             <div class="password-info">
               <div class="show-password">
@@ -119,6 +95,41 @@
       </div>
     </div>
   </div>
-  <script type="module" src="../scripts/sub-pages/login.js"></script>
+  <script src="../scripts/sub-pages/login.js"></script>  
 </body>
 </html>
+<?php
+  if (isset ($_POST['submit'])) {
+    $email = $_POST ['email'];
+    $password = $_POST ['password'];
+
+    $sql = "SELECT * FROM users WHERE email = '$email'";
+
+    $user = $conn->query($sql) or die ($conn->error);
+
+    $row = $user->fetch_assoc();
+
+    $total = $user->num_rows;
+
+    if (isset ($row ['email'])) {
+      if ($email == $row ['email'] && password_verify($password, $row ['password'])) {
+        $_SESSION ['access'] = $row ['access'];
+        $_SESSION ['user_id'] = $row ['user_id'];
+        $_SESSION ['first_name'] = $row ['first_name'];
+        $_SESSION ['last_name'] = $row ['last_name'];
+        $_SESSION ['email'] = $row ['email'];
+        $_SESSION ['profile_pic'] = $row ['profile_pic'];
+
+        if (isset ($_SESSION ['redirect_url'])) {
+          header("Location: ".$_SESSION ['redirect_url']);
+        } else {
+          header("Location: ./feed.php");
+        }
+      } else {
+        echo '<script>displayError ("Incorrect password.")</script>';
+      }
+    } else {
+      echo '<script>displayError ("Incorrect email.")</script>';
+    }
+  }
+?>

@@ -26,8 +26,6 @@ function checkSidebar () {
   }
 };
 
-
-
 menuElement.addEventListener ('click', toggleSidebar);
 SIDEBAR_CLOSE_BUTTON_ELEMENT.addEventListener ('click', toggleSidebar);
 sidebarModalElement.addEventListener ('click', toggleSidebar);

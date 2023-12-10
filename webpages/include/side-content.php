@@ -14,16 +14,21 @@
 ?>
 
 <div class="side-content">
+  <a href="#">
+    <button class="back-to-top">
+      Back to Top
+    </button>
+  </a>
   <div class="flex-column">
     <div class="welcome-container">
       <div class="welcome-message">
         <div class="flex-row">
           <?php if (isset ($_SESSION ['user_id'])) { ?>
-            <a href="./users/profile.php?id=<?php echo $_SESSION ['user_id'] ?>">
-              <img src="../images/user-solid-white.svg" class="author-picture">
+            <a href="./users.php?id=<?php echo $_SESSION ['user_id'] ?>">
+              <img src="../<?php echo $_SESSION ['profile_pic'] ?>" class="author-picture">
             </a>
           <?php } else { ?>
-            <img src="../images/user-solid-white.svg" class="author-picture">
+            <img src="../images/author-profile/default.webp" class="author-picture">
           <?php } ?>
           <p>
             <?php 
@@ -81,9 +86,9 @@
                 $medal = 'bronze';
               }
             ?>
-            <a href="../webpages/users/profile.php?id=<?php echo $row ['user_id'] ?>" class="author-container">
+            <a href="users.php?id=<?php echo $row ['user_id'] ?>" class="author-container">
             <img src="../images/<?php echo $medal ?>-medal.svg" class="ranking">
-              <img src="../images/user-solid-white.svg" class="author-picture">
+              <img src="../<?php echo $row ['profile_pic'] ?>" class="author-picture">
               <div class="author-stats">
                   <p class="author-name">
                       <?php echo $row['first_name'].' '.$row['last_name'] ?>
@@ -94,13 +99,8 @@
               </div>
             </a>
           </li>
-        <?php $i++; } while ($row = $user->fetch_assoc()) ?>    
+        <?php $i++; } while ($row = $user->fetch_assoc()); ?>
       </ul>
     </div>
   </div>
-  <a href="#" class="margin-auto we">
-    <button class="back-to-top">
-        Back to Top
-    </button>
-  </a>
 </div>

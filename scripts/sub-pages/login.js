@@ -25,3 +25,14 @@ SHOW_PASSWORD_LABEL.addEventListener ('click', ()=> {
     togglePassword ();
   };
 });
+
+function displayError (errorMessage) {
+  const ERROR_DIV = document.querySelector ('.js-error-message');
+  
+  const html = `
+    <p class="error-message">
+      ${errorMessage}
+    </p>
+  `
+  ERROR_DIV.innerHTML += html;
+}

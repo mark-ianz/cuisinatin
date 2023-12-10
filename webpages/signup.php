@@ -1,14 +1,68 @@
 <?php
   if (!isset($_SESSION)) {
     session_start();
-  } else {
+  }
+
+  if (isset ($_SESSION ['user_id'])) {
     header("Location: feed.php");
   }
 
   include_once ('../connection/config.php');
+  include_once ('./util/functions.php');
   $conn = connect();
+
+  echo $_SESSION ['redirect_url'] = $_SERVER ['HTTP_REFERER'];
 ?>
 
+<?php
+  $error_message = "";
+  if (isset ($_POST ['submit'])) {
+    try {
+      $first_name = $_POST ['fname'];
+      $last_name = $_POST ['lname'];
+      $email = $_POST ['email'];
+      $password = password_hash($_POST ['password'], PASSWORD_DEFAULT);
+
+      $first_letter = returnFirstLetter($first_name);
+      $pf_pic = "images/author-profile/PF_IMG_LETTER_".$first_letter.".png";
+      $sq1 = $_POST ['sq1'];
+      $sq2 = $_POST ['sq2'];
+      $sq3 = $_POST ['sq3'];
+      $sa1 = strtolower($_POST ['sa1']);
+      $sa2 = strtolower($_POST ['sa2']);
+      $sa3 = strtolower($_POST ['sa3']);
+  
+      $sql = "INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `email`, `password`, `profile_pic`, `sq1`, `sq2`, `sq3`, `sa1`, `sa2`, `sa3`)
+        VALUES (NULL, '$first_name', '$last_name', '$email', '$password', '$pf_pic', '$sq1', '$sq2', '$sq3', '$sa1', '$sa2', '$sa3');";
+  
+      $conn->query($sql) or die ($conn->error);
+  
+      /* FOR AUTO LOGIN AFTER SIGNING UP */
+      $sql = "SELECT * FROM users WHERE email = '$email'";
+
+      $user = $conn->query($sql) or die ($conn->error);
+
+      $row = $user->fetch_assoc();
+
+      $_SESSION ['access'] = $row ['access'];
+      $_SESSION ['user_id'] = $row ['user_id'];
+      $_SESSION ['first_name'] = $row ['first_name'];
+      $_SESSION ['last_name'] = $row ['last_name'];
+      $_SESSION ['email'] = $row ['email'];
+      $_SESSION ['profile_pic'] = $row ['profile_pic'];
+      
+      if (isset($_SESSION ['redirect_url'])) {
+        header("Location: ".$_SESSION ['redirect_url']);
+        unset ($_SESSION ['redirect_url']);
+      } else {
+        header("Location: ./feed.php");
+      }
+    }
+    catch (mysqli_sql_exception) {
+      $error_message = "Email is already taken.";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,10 +109,28 @@
           <form action="<?php $_SERVER ['PHP_SELF'] ?>" class="js-signup-form" method="post">
             <div class="input-container">
               <div class="flex-row">
-                <input type="text" name="fname" class="name-input js-first-name-input" placeholder="First Name" required maxlength="50">
-                <input type="text" name="lname" class="name-input js-last-name-input" placeholder="Last Name" required maxlength="50">
+                <input type="text"
+                  <?php 
+                    if (isset ($_POST ['fname'])) {
+                      echo "value=".$_POST ['fname'];
+                    }
+                  ?>
+                  name="fname" class="name-input js-first-name-input" placeholder="First Name" required maxlength="50">
+                <input type="text" 
+                  <?php 
+                    if (isset ($_POST ['lname'])) {
+                      echo "value=".$_POST ['lname'];
+                    }
+                  ?>
+                  name="lname" class="name-input js-last-name-input" placeholder="Last Name" required maxlength="50">
               </div>
-              <input type="email" name="email" class="js-email-input" placeholder="Email" required maxlength="50">
+              <input type="email" 
+                <?php 
+                  if (isset ($_POST ['email'])) {
+                    echo "value=". $_POST ['email'];
+                  }
+                ?>
+                name="email" class="js-email-input" placeholder="Email" required maxlength="50">
               <div class="flex-row">
                 <input type="password" name="password" class="js-password password-input" placeholder="Password" required minlength="8" maxlength="50">
                 <input type="password" class="js-confirm-password password-input" placeholder="Confirm Password" required>
@@ -70,7 +142,7 @@
                   <option value="">
                     Security question #1
                   </option>
-                  <option value="What was your childhood nickname?">
+                  <option value="What was your childhood nickname?">  
                     What was your childhood nickname?
                   </option>
                   <option value="What is the first name of your bestfriend in high school?">
@@ -189,34 +261,7 @@
                 <input type="text" name="sa3" class="answer-input js-answer-3" placeholder="Input your answer" required maxlength="100">
               </div>
             </div>
-            <p class="error-message js-error-message">
-              <?php
-                try {
-                  if (isset ($_POST ['submit'])) {
-                    $first_name = $_POST ['fname'];
-                    $last_name = $_POST ['lname'];
-                    $email = $_POST ['email'];
-                    $password = password_hash($_POST ['password'], PASSWORD_DEFAULT);
-                    $pf_pic = "None";
-                    $sq1 = $_POST ['sq1'];
-                    $sq2 = $_POST ['sq2'];
-                    $sq3 = $_POST ['sq3'];
-                    $sa1 = strtolower($_POST ['sa1']);
-                    $sa2 = strtolower($_POST ['sa2']);
-                    $sa3 = strtolower($_POST ['sa3']);
-                
-                    $sql = "INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `email`, `password`, `profile_pic`, `sq1`, `sq2`, `sq3`, `sa1`, `sa2`, `sa3`)
-                      VALUES (NULL, '$first_name', '$last_name', '$email', '$password', '$pf_pic', '$sq1', '$sq2', '$sq3', '$sa1', '$sa2', '$sa3');";
-                
-                    $conn->query($sql) or die ($conn->error);
-                
-                    echo "<script>location.href='login.php'</script>";
-                  }
-                } catch (mysqli_sql_exception) {
-                  echo "Email is already taken.";
-                }
-              ?>
-            </p>
+            <p class="error-message js-error-message"></p>						
             <button type="submit" name="submit" class="signup-button js-signup-button">Signup</button>
             <div class="password-info">
               <div class="show-password">
@@ -241,6 +286,12 @@
       </div>
     </div>
   </div>
-  <script type="module" src="../scripts/sub-pages/signup.js"></script>
+  <script src="../scripts/sub-pages/signup.js"></script>
 </body>
 </html>
+<?php
+  if ($error_message != "") {
+    echo $_SERVER ['HTTP_REFERER'];
+    echo '<script>displayError ('.'"'.$error_message.'"'.')</script>';
+  }
+?>

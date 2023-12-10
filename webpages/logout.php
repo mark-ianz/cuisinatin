@@ -2,7 +2,10 @@
   if (isset ($_POST['submit'])) {
     session_start();
     session_destroy();
-    echo $_SERVER ['PHP_SELF'];
   }
-  header("Location: ./feed.php");
+  if (isset ($_SERVER ['HTTP_REFERER'])) {
+    header("Location: ".$_SERVER ['HTTP_REFERER']);
+  } else {
+    header("Location: ./feed.php");
+  }
 ?>

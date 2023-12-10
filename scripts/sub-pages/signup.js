@@ -67,3 +67,6 @@ SHOW_PASSWORD_LABEL.addEventListener ('click', ()=> {
   };
 });
 
+function displayError (errorMessage) {
+  ERROR_MESSAGE.innerText = errorMessage;
+}
