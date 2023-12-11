@@ -1,0 +1,407 @@
+body {
+  overflow: hidden;
+}
+
+p {
+  color: black;
+}
+
+main {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 7vh;
+}
+
+.edit-container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.edit-container img {
+  height: 15px;
+  width: 15px;
+}
+
+.headline {
+  font-size: 36px;
+  word-break: break-word;
+}
+
+.sub-title {
+  font-size: 28px;
+}
+
+.main-container {
+  background-color: #1E1E1E;
+  border: solid 1px white;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  width: 80vw;
+  min-height: 60vh;
+  max-width: 1200px;
+  max-height: 600px;
+  padding: 20px;
+  position: relative;
+}
+
+.mc-left {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.mc-left-top {
+  height: 35%;
+  background-image: url(../images/mc-left-bg-image.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.author-profile {
+  background-color: black;
+  border-radius: 50%;
+  border: solid 3px black;
+  cursor: pointer;
+  width: 180px;
+  height: 180px;
+  margin-left: -90px;
+  position: absolute;
+  left: 50%;
+  bottom: -50px;
+  object-fit: cover;
+}
+
+.author-profile:hover {
+  filter: brightness(1.02);
+}
+
+.mc-left-bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 65%;
+  padding: 60px 20px 20px 20px;
+}
+
+.user-info {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto;
+  gap: 20px;
+}
+
+.info-cont {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 7px;
+}
+
+.location {
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 10px;
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+
+.location-logo {
+  width: 30px;
+  height: 30px;
+}
+
+.cont-title {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.cont-info {
+  font-size: 16px;
+}
+
+.mc-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 60%;
+  gap: 10px;
+}
+
+.about-cont {
+  border-radius: 8px;
+  background-color: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  min-height: 150px;
+  max-height: 250px;
+  overflow: hidden;
+  scrollbar-gutter: stable;
+}
+
+.about-cont:hover {
+  overflow: auto;
+}
+
+.view-post-cont {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.arrow {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  transition: 200ms;
+}
+
+.arrow-up {
+  display: none;
+}
+
+.arrow:hover {
+  filter: brightness(1.2);
+}
+
+.about-cont::-webkit-scrollbar {
+  width: 5px;
+}
+
+.about-cont::-webkit-scrollbar-track {
+  background-color: #1a1a1b6f;
+}
+
+.about-cont::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.397);
+  border-radius: 5px;
+}
+
+.close-button {
+  border: solid 1px white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding-bottom: 2px;
+  font-size: 20px;
+  transition: 50ms;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.close-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* VIEW POSTS */
+.view-content {
+  align-items: center;
+  display: none;
+  justify-content: center;
+  gap: 10px;
+}
+
+.card-container {
+  align-items: flex-start;
+  justify-content: start;
+  display: flex;
+  gap: 10px;
+  overflow: auto;
+  position: relative;
+  padding: 10px 0;
+  scroll-behavior: smooth;
+}
+
+.card-container::-webkit-scrollbar {
+  width: 5px;
+}
+
+.card-container::-webkit-scrollbar-track {
+  background-color: #4a4a4b6f;
+}
+
+.card-container::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 6px rgba(110, 109, 109, 0.397);
+  border-radius: 5px;
+}
+
+.card {
+  display: flex;
+  background-color: #1a1a1b;
+  border: solid 1px #343536;
+  border-radius: 5px;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+}
+
+.card:hover {
+  border-color: #636466;
+}
+
+.scroll-button {
+  align-items: center;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  margin-top: -20px;
+  padding: 10px;
+}
+
+.scroll-image {
+  width: 40px;
+  height: 40px;
+  filter: brightness(.6);
+}
+
+
+
+/* FIRST CONTAINER */
+.image-container img {
+  cursor: pointer;
+  width: 200px;
+  height: 100px;
+  object-fit: contain;
+}
+
+/* DESCRIPTION CONTAINER */
+.description-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* FOOD INFO */
+.food-info {
+  align-items: flex-start;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.food-name {
+  color: #FF9416;
+  font-size: 20px;
+  font-family: 'Italiana', sans-serif;
+  word-break: break-word;
+}
+
+.rating-container {
+  align-items: center;
+  display: flex;
+  font-size: 12px;
+}
+
+.rating {
+  height: 15px;
+}
+
+/* AUTHOR INFO */
+.author-info {
+  align-items: center;
+  display: flex;
+  font-size: 14px;
+  justify-content: space-between;
+}
+
+.author-picture {
+  border-radius: 50%;
+  cursor: pointer;
+  height: 45px;
+  width: 45px;
+  object-fit: cover;
+}
+
+.author-info p {
+  font-size: 12px;
+  color: rgb(215, 218, 220);
+}
+
+.author-picture:hover {
+  filter: brightness(1.07);
+}
+
+.flex-row {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.counter {
+  align-items: center;
+  display: flex;
+  font-size: 12px;
+  color: rgb(215, 218, 220);
+  gap: 10px;
+}
+
+.likes {
+  align-items: flex-end;
+}
+
+.counter-img {
+  filter: invert(1);
+}
+
+.like-button {
+  align-items: center;
+  background: none;
+  border: solid 1px #343536;
+  cursor: pointer;
+  display: flex;
+  border-radius: 50%;
+  padding: 5px;
+  transition: 200ms;
+}
+
+.like-image {
+  filter: invert(95%) sepia(6%) saturate(97%) hue-rotate(160deg) brightness(96%) contrast(85%);
+  width: 20px;
+  height: 20px;
+}
+
+.like-button:hover {
+  background-color: #272729;
+}
+
+.like-button:active {
+  opacity: .7;
+}
+
+.feed-dropdown {
+  z-index: 0;
+}
+
+
+@media (max-height: 850px) {
+  .author-profile {
+    width: 150px;
+    height: 150px;
+    margin-left: -75px;
+    left: 50%;
+    bottom: -50px;
+  }
+}

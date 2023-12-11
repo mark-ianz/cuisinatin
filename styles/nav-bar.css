@@ -237,6 +237,12 @@
     transition: 200ms;
 }
 
+.sidebar-login-logout {
+    background: none;
+    border: none;
+    width: 100%;
+}
+
 .nav-list:hover {
     border-bottom-color: rgb(255, 255, 255);
 }

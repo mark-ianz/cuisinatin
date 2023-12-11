@@ -36,8 +36,47 @@ body {
   gap: 20px;
 }
 
-.margin-auto {
-  margin: 0 auto;
+.no-gap {
+  gap: 0;
+}
+
+.gap-10 {
+  gap: 10px;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.gray {
+  color: gray;
+}
+
+.white {
+  color: white;
+}
+
+.black {
+  color: black;
+}
+
+.orange {
+  color: #FF9416;
+}
+
+.px-10 {
+  width: 10px;
+  height: 10px;
+}
+
+.px-15 {
+  width: 15px;
+  height: 15px;
+}
+
+.filter-white {
+  filter: brightness(1);
 }
 
 @media (max-width: 1280px) {

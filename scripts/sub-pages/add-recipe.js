@@ -1,45 +1,22 @@
-import {SIDEBAR_CLOSE_BUTTON_ELEMENT,
-        SIDEBAR_SEARCH_BUTTON_ELEMENT,
-        RESPONSIVE_SEARCH_IMAGE,
-        sidebarModalElement,
-        menuElement,
-        toggleSidebar,
-        SIDEBAR_SEARCH_BAR_ELEMENT,
-        SEARCH_BAR_ELEMENT,
-} from "../nav-bar.js";
-
-/* SIDEBAR FUNCTION */
-SIDEBAR_CLOSE_BUTTON_ELEMENT.addEventListener ('click', toggleSidebar);
-SIDEBAR_SEARCH_BUTTON_ELEMENT.addEventListener ('click', toggleSidebar);
-RESPONSIVE_SEARCH_IMAGE.addEventListener ('click', toggleSidebar);
-sidebarModalElement.addEventListener ('click', toggleSidebar);
-menuElement.addEventListener ('click', toggleSidebar);
-
-SEARCH_BAR_ELEMENT.addEventListener ('keyup', (event) => {
+/* PREVENT FORM FROM SUBMITTING WHEN PRESSED ENTER KEY */
+const FORM = document.querySelector ('.main-container');
+FORM.addEventListener ('keydown', (event)=> {
   if (event.key === 'Enter') {
-    SEARCH_BAR_ELEMENT.value = '';
-  };
-});
-SIDEBAR_SEARCH_BAR_ELEMENT.addEventListener ('keyup', (event) => {
-  if (event.key === 'Enter') {
-    SIDEBAR_SEARCH_BAR_ELEMENT.value = '';
-    toggleSidebar ();
-  };
-});
+    event.preventDefault ();
+  }
+})
 
-/* ADD RECIPE FUNCTION */
+/* ADDING RECIPE */
 const ADD_RECIPE_INPUT = document.querySelector ('.add-recipe-input');
 const RECIPE_LIST_CONTAINER = document.querySelector ('.recipe-list');
 const ADD_RECIPE_BUTTON = document.querySelector ('.add-recipe');
-
+ADD_RECIPE_BUTTON.addEventListener ('click', ()=> {
+  console.log (123);
+})
 let recipeList = [];
 
 function addRecipe () {
-  if (ADD_RECIPE_INPUT.value === '') {
-    RECIPE_LIST_CONTAINER.innerHTML = `<p>Please input a recipe.</p>`;
-    return
-  }
-  else {
+  if (ADD_RECIPE_INPUT.value != '') {
     recipeList.push (ADD_RECIPE_INPUT.value);
   
     renderList ();
@@ -55,9 +32,7 @@ function renderList () {
     let html =
     `
       <li>
-        <p class="recipe">
-          • ${value}
-        </p>
+        <input name="recipe[]" type="text" class="recipe" value="${value}">
         <input type="button" value="X" class="remove-recipe">
       </li>
     `;
@@ -74,21 +49,17 @@ function renderList () {
     });
   });
 }
-
 ADD_RECIPE_BUTTON.addEventListener ('click', addRecipe);
 
+
+/* ADDING PROCEDURE */
 const ADD_PROCEDURE_INPUT = document.querySelector ('.add-procedure-input');
 const PROCEDURE_LIST_CONTAINER = document.querySelector ('.procedure-list');
 const ADD_PROCEDURE_BUTTON = document.querySelector ('.add-procedure');
 
 let procedureList = [];
-
 function addProcedure () {
-  if (ADD_PROCEDURE_INPUT.value === '') {
-    PROCEDURE_LIST_CONTAINER.innerHTML = `<p>Please input a PROCEDURE.</p>`;
-    return
-  }
-  else {
+  if (ADD_PROCEDURE_INPUT.value != '') {
     procedureList.push (ADD_PROCEDURE_INPUT.value);
   
     renderProcedure ();
@@ -104,9 +75,8 @@ function renderProcedure () {
     let html =
     `
       <li>
-        <p class="procedure">
-          ${index+1}. ${value}
-        </p>
+        <label for="procedure[]">${index + 1}.</label>
+        <input name="procedure[]" type="text" class="procedure" value="${value}">
         <input type="button" value="X" class="remove-procedure">
       </li>
     `;
@@ -126,3 +96,67 @@ function renderProcedure () {
 
 
 ADD_PROCEDURE_BUTTON.addEventListener ('click', addProcedure);
+
+/* TO ADD RECIPE OR PROCEDURE WHEN PRESSED ENTER KEY */
+
+ADD_RECIPE_INPUT.addEventListener ('keydown', (event)=> {
+  if (event.key === 'Enter') {
+    addRecipe ();
+  }
+});
+
+ADD_PROCEDURE_INPUT.addEventListener ('keydown', (event)=> {
+  if (event.key === 'Enter') {
+    addProcedure ();
+  }
+})
+
+function displayError (errorMessage) {
+  const ERROR_DIV = document.querySelector ('.js-error-message');
+  
+  const html = `
+    <p class="error-message">
+      ${errorMessage}
+    </p>
+  `
+  ERROR_DIV.innerHTML += html;
+}
+
+
+function displayModal () {
+  const html = `
+    <div class="modal-bg">
+      <div class="modal-container">
+        <p class="title">
+          Join the Cuisinatin community
+        </p>
+        <p>
+          Oops! It looks like you need to log in to access this feature. Please log in or create an account to continue exploring all the amazing features we have to offer.
+        </p>
+        <div class="option">
+          <a href="./login.php">
+              <button>
+              LOGIN
+              </button>
+            </a>
+          <a href="./signup.php">
+            <button>
+              SIGNUP
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  `
+  document.body.innerHTML += html;
+  removeModal ();
+}
+
+function removeModal () {
+  const MODAL_ELEMENT = document.querySelector ('.modal-bg');
+  const MODAL_CLOSE_BUTTON = document.querySelector ('.js-cb');
+
+  MODAL_CLOSE_BUTTON.addEventListener ('click', ()=> {
+    MODAL_ELEMENT.remove ();
+  });
+}

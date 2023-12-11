@@ -35,8 +35,8 @@ main {
   border: solid 1px #343536;
   border-radius: 7px;
   flex-direction: column;
-  gap: 20px;
-  padding: 20px;
+  gap: 10px;
+  padding: 15px;
   width: 40%;
 }
 
