@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 footer {
   display: flex;
   align-items: center;
@@ -37,4 +38,45 @@ footer {
   cursor: pointer;
   height: 30px;
   width: 30px;
+=======
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #1a1a1b;
+  border-top: solid 1px #343536;
+}
+
+.footer-container {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  width: 95vw;
+  max-width: 1240px;
+  padding: 10px 0;
+}
+
+.footer-desc-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+}
+
+.footer-icon-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.footer-icon {
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+>>>>>>> origin/main
 }

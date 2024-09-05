@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 * {
   margin: 0;
   padding: 0;
@@ -84,3 +85,91 @@ body {
     padding-top: 85px;
   }
 }
+=======
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
+
+body {
+  background-color: black;
+  padding-top: 135px;
+}
+
+:root{
+  color-scheme: dark;
+}
+
+.hr {
+  border-bottom: solid 1px #343536;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.no-gap {
+  gap: 0;
+}
+
+.gap-10 {
+  gap: 10px;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.gray {
+  color: gray;
+}
+
+.white {
+  color: white;
+}
+
+.black {
+  color: black;
+}
+
+.orange {
+  color: #FF9416;
+}
+
+.px-10 {
+  width: 10px;
+  height: 10px;
+}
+
+.px-15 {
+  width: 15px;
+  height: 15px;
+}
+
+.filter-white {
+  filter: brightness(1);
+}
+
+@media (max-width: 1280px) {
+  body {
+    padding-top: 85px;
+  }
+}
+>>>>>>> origin/main

@@ -10,7 +10,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:image" content="https://cuisinatin.netlify.app/images/favicon/favicon-black.svg"/>
+<<<<<<< HEAD
     <meta name="description" content="Discover the rich tapestry of flavors, textures, and traditions that define the essence of Filipino cooking. From savory adobo to delectable halo-halo, our culinary exploration celebrates the diverse and vibrant world of Filipino dishes. Join us at Cuisinatin to savor the authentic tastes that bring people together, one delicious recipe at a time.">
+=======
+>>>>>>> origin/main
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">

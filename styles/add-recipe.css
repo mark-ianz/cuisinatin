@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* CUSTOM NAV */
 .search-bar {
   border-color: white;
@@ -424,4 +425,381 @@ h1 {
   .container {
     width: auto;
   }
+=======
+/* CUSTOM NAV */
+.search-bar {
+  border-color: white;
+  color: black;
+  background-color: rgb(215, 215, 215);
+}
+
+.search-button {
+  border-color: white;
+}
+
+.search-button img {
+  filter: invert(1);
+}
+
+.search-button:hover {
+  background-color: rgba(0, 0, 0, 0.267);
+}
+
+.login-button {
+  color: white;
+  border-color: white;
+}
+
+.login-button:hover {
+  background-color: rgba(0, 0, 0, 0.267);
+}
+
+h1 {
+  font-size: 69px;
+  line-height: 60px;
+}
+
+body {
+  padding-top: 25vh;
+  background-attachment: fixed;
+  background-color: #000000;
+  background-image: url(../images/recipe-background.jpg);
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* overflow: hidden; */
+}
+
+
+/* ----------- */
+
+main {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+}
+
+.main-container, h1 {
+  border: solid 1px white;
+  background-color: rgba(0, 0, 0, 0.648);
+}
+
+.input-container,.add-recipe-container,.add-procedure-container,.type-of-recipe,.submit-photo-container {
+  border: solid 1px white;
+  background-color: rgba(128, 128, 128, 0.33);
+}
+
+h1 {
+  border-radius: 5px;
+  font-size: 24px;
+  width: 885px;
+  padding: 10px;
+}
+
+form {
+  border-radius: 5px;
+}
+
+.input-container,.add-recipe-container,.add-procedure-container,.type-of-recipe,.submit-photo-container  {
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  flex-direction:column;
+  justify-content: start;
+}
+
+/* FORM */
+.main-container {
+  color: rgb(215, 218, 220);
+  display: grid;
+  grid-template-columns: auto auto;
+  row-gap: 20px;
+  column-gap: 20px;
+  /* justify-content: center;
+  flex-direction: column; */
+  padding: 20px;
+  /* gap: 10px; */
+}
+
+.input-container {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.recipe-name-input,.add-recipe-input,.add-procedure-input,.recipe-desc-input {
+  background: none;
+  border: none;
+  color: rgb(215, 218, 220);
+  border-bottom: solid 1px #ffffff;
+  outline: none;
+  padding: 0px 5px 5px 0;
+  margin: 10px 0;
+}
+
+.recipe-name-input {
+  outline: none;
+  font-size: 18px;
+}
+
+
+/* UL RECIPE LIST CONTAINER */
+.add-recipe-input-container {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.add-recipe-input {
+  flex-grow: 1;
+}
+
+.add-recipe {
+  border: solid 1px rgb(215, 218, 220);
+  border-radius: 7px;
+  background: none;
+  cursor: pointer;
+  padding: 5px;
+  transition: 100ms;
+}
+
+.add-recipe:hover {
+  background-color: rgb(215, 218, 220);
+  color: #343536;
+}
+
+.add-recipe:active {
+  opacity: .7;
+}
+
+.remove-recipe,.remove-procedure {
+  background: none;
+  border: solid 1px #343536;
+  border-radius: 50%;
+  cursor: pointer;
+  min-width: 25px;
+  min-height: 25px;
+  text-align: center;
+  transition: 100ms;
+  vertical-align: middle;
+}
+
+.remove-recipe:hover,.remove-procedure:hover {
+  background-color: #343536;
+  color: rgb(215, 218, 220);
+}
+
+.recipe-list {
+  columns: 2;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: auto auto;
+  padding: 5px;
+}
+
+.recipe-list li {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  width: 130px;
+}
+
+.recipe {
+  background: none;
+  border: none;
+  border-bottom: solid 1px;
+  outline: none;
+  width: 120px;
+  word-break: break-all;
+}
+
+/* OL PROCEDURE LIST CONTAINER */
+
+
+.add-procedure-input-container {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+
+.procedure-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.procedure-list li {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.procedure {
+  background: none;
+  border: none;
+  border-bottom: solid 1px;
+  outline: none;
+  width: 350px;
+  max-width: 350px;
+  word-break: break-all;
+}
+
+.add-procedure-input {
+  flex-grow: 1;
+}
+
+.add-procedure {
+  border: solid 1px rgb(215, 218, 220);
+  border-radius: 7px;
+  background: none;
+  cursor: pointer;
+  padding: 5px;
+  transition: 100ms;
+}
+
+.add-procedure:hover {
+  background-color: rgb(215, 218, 220);
+  color: #343536;
+}
+
+.add-procedure:active {
+  opacity: .7;
+}
+
+/* --------- */
+
+/* TYPE OF DISH */
+.type-of-recipe {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.container-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.selection-type-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-photo-submit {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.submit-photo-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+}
+
+.submit-container {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+}
+
+.submit-button {
+  border: solid 1px rgb(215, 218, 220);
+  border-radius: 7px;
+  background: none;
+  cursor: pointer;
+  padding: 5px;
+  transition: 100ms;
+}
+
+.submit-button:hover {
+  background-color: rgb(215, 218, 220);
+  color: #343536;
+}
+
+.submit-button:active {
+  opacity: .7;
+}
+
+.error-message {
+  font-size: 14px;
+}
+
+.modal-bg {
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+}
+
+.modal-container {
+  justify-content: space-around;
+  background-color: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  width: 90vw;
+  height: 50vh;
+  max-width: 500px;
+  max-height: 250px;
+  padding: 20px;
+  position: relative;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.option {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option button {
+  cursor: pointer;
+  padding: 10px;
+  width: 100%;
+}
+
+.option a {
+  width: 100%;
+}
+
+.close-button {
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  border: solid 1px;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  transition: 200ms;
+}
+
+.close-button:hover {
+  background-color: #0000002c;
+>>>>>>> origin/main
 }
