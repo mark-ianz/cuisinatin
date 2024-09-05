@@ -87,8 +87,8 @@
             <input type="file" name="profile-pic" class="upload-file">
           </div>
           <div class="flex-row names">
-            <input type="text" name="first-name" class="headline" value="<?php echo $row ['first_name']?>" required>
-            <input type="text" name="last-name" class="headline" value="<?php echo $row ['last_name']?>" required>
+            <input type="text" name="first-name" class="name-input" placeholder="First Name" value="<?php echo $row ['first_name']?>" required>
+            <input type="text" name="last-name" class="name-input" placeholder="Last Name" value="<?php echo $row ['last_name']?>" required>
           </div>
           <div class="user-info">
             <div class="info-cont">
@@ -109,7 +109,7 @@
             <div class="info-cont">
               <p class="cont-title">Birthdate</p>
               <input type="date" name="birthdate" 
-                value="<?php if (isset ($row ['birthdate'])) {echo $row ['birthdate'];} ?>">
+                <?php if (isset ($row ['birthdate'])) {echo "value=\"".$row ['birthdate']."\"";} ?>>
             </div>
             <div class="info-cont location">
               <img src="../images//location.svg" class="location-logo">
@@ -125,9 +125,7 @@
         </div>
       </div>
       <div class="mc-right">
-        <p class="headline white">
-          Edit your profile
-        </p>
+        
         <div class="about-cont">
           <p class="sub-title">
             About Me
@@ -158,7 +156,6 @@
     $fname = $_POST ['first-name'];
     $lname = $_POST ['last-name'];
     $gender = $_POST['gender'];
-    $birthdate = $_POST['birthdate'];
     $location = $_POST ['location'];
     $about = trim($_POST ['about']);
 
@@ -168,6 +165,13 @@
     if ($location == "") {
       $location = null;
     }
+
+    if ($_POST['birthdate'] == '') {
+      $birthdate = null;
+    } else {
+      $birthdate = $_POST['birthdate'];
+    }
+  
 
     if (isset ($_FILES ['profile-pic']) && !empty ($_FILES ['profile-pic']['name'])) {
       $file = $_FILES ['profile-pic'];
@@ -184,8 +188,17 @@
         $folder_upload = "../".$upload_image;
         move_uploaded_file($tmp_name, $folder_upload);
 
-        $sql = "UPDATE `users` SET `first_name` = '$fname', `last_name` = '$lname', `gender` = '$gender', `birthdate` = '$birthdate', `province` = '$location', `profile_pic` = '$upload_image', `about` = '$about' 
+        if ($birthdate) {
+          $sql = "UPDATE `users` SET `first_name` = '$fname', `last_name` = '$lname', `gender` = '$gender', `birthdate` = '$birthdate', `province` = '$location', `profile_pic` = '$upload_image', `about` = '$about' 
           WHERE `users`.`user_id` = '$id'";
+        } else {
+          $sql = "UPDATE `users` SET `first_name` = '$fname', `last_name` = '$lname', `gender` = '$gender', `province` = '$location', `profile_pic` = '$upload_image', `about` = '$about' 
+          WHERE `users`.`user_id` = '$id'";
+        }
+
+        if (file_exists($currentPF) && !str_contains($currentPF, 'LETTER')) {
+          unlink($currentPF);
+        }
       } else {
         echo "<script>displayError (\"Only PNG/JPG/JPEG files are allowed.\")</script>";
       }
@@ -194,6 +207,15 @@
         WHERE `users`.`user_id` = '$id'";
     }
 
+    $currentPF = '../'.$row ['profile_pic'];
+
+    $conn->query($sql) or die ($conn->error);
+
+    $sql = "SELECT * FROM `users` WHERE user_id = '$id'";
+    $user = $conn->query($sql) or die ($conn->error);
+    $table = $user->num_rows;
+    $row = $user->fetch_assoc();
+
     $_SESSION ['access'] = $row ['access'];
     $_SESSION ['user_id'] = $row ['user_id'];
     $_SESSION ['first_name'] = $row ['first_name'];
@@ -201,8 +223,6 @@
     $_SESSION ['email'] = $row ['email'];
     $_SESSION ['profile_pic'] = $row ['profile_pic'];
     echo '<script>location.href = "./users.php?id='.$id.'"</script>';
-    $conn->query($sql) or die ($conn->error);
-    $conn->close();
   }
   
 ?>

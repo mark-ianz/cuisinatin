@@ -32,7 +32,7 @@ h1 {
 }
 
 body {
-  padding-top: 25vh;
+  padding-top: 20vh;
   background-attachment: fixed;
   background-color: #000000;
   background-image: url(../images/recipe-background.jpg);
@@ -53,7 +53,16 @@ main {
   justify-content: center;
 }
 
-.main-container, h1 {
+.container {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 80vw;
+  max-width: 1000px;
+}
+
+.form-container, h1 {
   border: solid 1px white;
   background-color: rgba(0, 0, 0, 0.648);
 }
@@ -61,42 +70,35 @@ main {
 .input-container,.add-recipe-container,.add-procedure-container,.type-of-recipe,.submit-photo-container {
   border: solid 1px white;
   background-color: rgba(128, 128, 128, 0.33);
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  flex-direction:column;
+  width: auto;
 }
 
 h1 {
   border-radius: 5px;
   font-size: 24px;
-  width: 885px;
   padding: 10px;
-}
-
-form {
-  border-radius: 5px;
-}
-
-.input-container,.add-recipe-container,.add-procedure-container,.type-of-recipe,.submit-photo-container  {
-  border-radius: 6px;
-  padding: 10px;
-  display: flex;
-  flex-direction:column;
-  justify-content: start;
 }
 
 /* FORM */
-.main-container {
+.form-container {
+  border-radius: 5px;
   color: rgb(215, 218, 220);
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 1fr 1fr;
   row-gap: 20px;
   column-gap: 20px;
   /* justify-content: center;
   flex-direction: column; */
   padding: 20px;
   /* gap: 10px; */
+  flex-grow: 1;
 }
 
 .input-container {
-  width: 400px;
   display: flex;
   flex-direction: column;
 }
@@ -172,12 +174,17 @@ form {
   padding: 5px;
 }
 
+.recipe-list::before {
+  content: 'Recipes:';
+  display: block;
+}
+
 .recipe-list li {
   align-items: center;
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  width: 130px;
+  flex-grow: 1;
 }
 
 .recipe {
@@ -185,12 +192,28 @@ form {
   border: none;
   border-bottom: solid 1px;
   outline: none;
-  width: 120px;
   word-break: break-all;
+  flex-grow: 1;
 }
 
 /* OL PROCEDURE LIST CONTAINER */
+.procedure-list, .recipe-list {
+  max-height: 155px;
+  overflow: auto;
+}
 
+.procedure-list::-webkit-scrollbar, .recipe-list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.procedure-list::-webkit-scrollbar-track, .recipe-list::-webkit-scrollbar-track {
+  background-color: #1a1a1b6f;
+}
+
+.procedure-list::-webkit-scrollbar-thumb, .recipe-list::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.397);
+  border-radius: 5px;
+}
 
 .add-procedure-input-container {
   align-items: center;
@@ -199,18 +222,15 @@ form {
   justify-content: space-between;
 }
 
-
 .procedure-list {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.procedure-list li {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-
+.procedure-list::before {
+  content: 'Procedures:';
+  display: block;
 }
 
 .procedure {
@@ -218,10 +238,18 @@ form {
   border: none;
   border-bottom: solid 1px;
   outline: none;
-  width: 350px;
-  max-width: 350px;
   word-break: break-all;
+  display: flex;
+  flex-grow: 1;
 }
+
+.procedure-list li {
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+}
+
+
 
 .add-procedure-input {
   flex-grow: 1;
@@ -373,4 +401,27 @@ form {
 
 .close-button:hover {
   background-color: #0000002c;
+}
+
+@media (max-width: 1040px) {
+  .recipe-list {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 720px) {
+  .form-container {
+    grid-template-columns: 1fr;
+  }
+
+  body {
+    padding: 12vh 0 5vh 0;
+  }
+}
+
+@media (max-width: 410px) {
+  .container {
+    width: auto;
+  }
 }

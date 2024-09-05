@@ -7,61 +7,58 @@
     header("Location: feed.php");
   }
 
+  if (isset ($_SESSION ['code-verify'])) {
+    header("Location: ./verify-email.php");
+  }
+
+  define('mail', TRUE);
+  include_once ('../util/mail.php');
+  //Load Composer's autoloader
+  require '../PHPMailer/src/PHPMailer.php';
+  require '../PHPMailer/src/SMTP.php';
+  require '../PHPMailer/src/Exception.php';
+  require '../vendor/autoload.php'; 
+
+  
   include_once ('../connection/config.php');
   include_once ('./util/functions.php');
   $conn = connect();
 
-  echo $_SESSION ['redirect_url'] = $_SERVER ['HTTP_REFERER'];
+  if (isset ($_SERVER ['HTTP_REFERER'])) {
+    $_SESSION ['redirect_url'] = $_SERVER ['HTTP_REFERER'];
+  }
 ?>
 
 <?php
   $error_message = "";
   if (isset ($_POST ['submit'])) {
-    try {
+
+    $email = $_POST ['email'];
+    $sql = "SELECT * FROM users WHERE email = '$email'";
+    $user = $conn->query($sql) or die ($conn->error);
+
+    if ($user->num_rows > 0) {
+      $error_message = 'Email is already taken.';
+    } else {
       $first_name = $_POST ['fname'];
       $last_name = $_POST ['lname'];
-      $email = $_POST ['email'];
       $password = password_hash($_POST ['password'], PASSWORD_DEFAULT);
-
+    
       $first_letter = returnFirstLetter($first_name);
       $pf_pic = "images/author-profile/PF_IMG_LETTER_".$first_letter.".png";
-      $sq1 = $_POST ['sq1'];
-      $sq2 = $_POST ['sq2'];
-      $sq3 = $_POST ['sq3'];
-      $sa1 = strtolower($_POST ['sa1']);
-      $sa2 = strtolower($_POST ['sa2']);
-      $sa3 = strtolower($_POST ['sa3']);
-  
-      $sql = "INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `email`, `password`, `profile_pic`, `sq1`, `sq2`, `sq3`, `sa1`, `sa2`, `sa3`)
-        VALUES (NULL, '$first_name', '$last_name', '$email', '$password', '$pf_pic', '$sq1', '$sq2', '$sq3', '$sa1', '$sa2', '$sa3');";
-  
-      $conn->query($sql) or die ($conn->error);
-  
-      /* FOR AUTO LOGIN AFTER SIGNING UP */
-      $sql = "SELECT * FROM users WHERE email = '$email'";
 
-      $user = $conn->query($sql) or die ($conn->error);
+      $_SESSION ['temp-fname'] = $first_name;
+      $_SESSION ['temp-lname'] = $last_name;
+      $_SESSION ['temp-email'] = $email;
+      $_SESSION ['temp-password'] = $password;
+      $_SESSION ['temp-profile-pic'] = $pf_pic;
 
-      $row = $user->fetch_assoc();
-
-      $_SESSION ['access'] = $row ['access'];
-      $_SESSION ['user_id'] = $row ['user_id'];
-      $_SESSION ['first_name'] = $row ['first_name'];
-      $_SESSION ['last_name'] = $row ['last_name'];
-      $_SESSION ['email'] = $row ['email'];
-      $_SESSION ['profile_pic'] = $row ['profile_pic'];
-      
-      if (isset($_SESSION ['redirect_url'])) {
-        header("Location: ".$_SESSION ['redirect_url']);
-        unset ($_SESSION ['redirect_url']);
-      } else {
-        header("Location: ./feed.php");
-      }
+      $code = rand(100000, 999999);
+      $_SESSION ['code-verify'] = $code;
+      sendCode($email, $code);
+      header("Location: ./verify-email.php");
     }
-    catch (mysqli_sql_exception) {
-      $error_message = "Email is already taken.";
-    }
-}
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -88,10 +85,10 @@
     </div>
 
     <!-- SECTION -->
-    <div class="login-section">
+    <div class="form-container signup-section">
 
       <!-- CONTAINER -->
-      <div class="login-container">
+      <div class="container signup-container">
         <!-- TOP SIDE OF CONTAINER -->
         <div class="top-side">
           <div class="logo-container">
@@ -136,133 +133,8 @@
                 <input type="password" class="js-confirm-password password-input" placeholder="Confirm Password" required>
               </div>
             </div>
-            <div class="security-question-container">
-              <div class="flex-row">
-                <select name="sq1" required class="select-security-question js-question-1">
-                  <option value="">
-                    Security question #1
-                  </option>
-                  <option value="What was your childhood nickname?">  
-                    What was your childhood nickname?
-                  </option>
-                  <option value="What is the first name of your bestfriend in high school?">
-                    What is the first name of your bestfriend in high school?
-                  </option>
-                  <option value="In what city were you born?">
-                    In what city were you born?
-                  </option>
-                  <option value="What is the name of your favorite pet?">
-                    What is the name of your favorite pet?
-                  </option>
-                  <option value="What is the name of the street where you grew up?">
-                    What is the name of the street where you grew up?
-                  </option>
-                  <option value="What is your mother's maiden name?">
-                    What is your mother's maiden name?
-                  </option>
-                  <option value="What high school did you attend?">
-                    What high school did you attend?
-                  </option>
-                  <option value="What is your date of birth?">
-                    What is your date of birth?
-                  </option>
-                  <option value="Who is your favorite superhero?">
-                    Who is your favorite superhero?
-                  </option>
-                  <option value="What year did you enter college?">
-                    What year did you enter college?
-                  </option>
-                  <option value="Set a code of your choice">
-                    Set a code of your choice
-                  </option>
-                </select>
-                <input type="text" name="sa1" class="answer-input js-answer-1" placeholder="Input your answer" required maxlength="100">
-              </div>
-              <div class="flex-row">
-                <select name="sq2" required class="select-security-question js-question-2">
-                  <option value="">
-                    Security question #2
-                  </option>
-                  <option value="What was your childhood nickname?">
-                    What was your childhood nickname?
-                  </option>
-                  <option value="What is the first name of your bestfriend in high school?">
-                    What is the first name of your bestfriend in high school?
-                  </option>
-                  <option value="In what city were you born?">
-                    In what city were you born?
-                  </option>
-                  <option value="What is the name of your favorite pet?">
-                    What is the name of your favorite pet?
-                  </option>
-                  <option value="What is the name of the street where you grew up?">
-                    What is the name of the street where you grew up?
-                  </option>
-                  <option value="What is your mother's maiden name?">
-                    What is your mother's maiden name?
-                  </option>
-                  <option value="What high school did you attend?">
-                    What high school did you attend?
-                  </option>
-                  <option value="What is your date of birth?">
-                    What is your date of birth?
-                  </option>
-                  <option value="Who is your favorite superhero?">
-                    Who is your favorite superhero?
-                  </option>
-                  <option value="What year did you enter college?">
-                    What year did you enter college?
-                  </option>
-                  <option value="Set a code of your choice">
-                    Set a code of your choice
-                  </option>
-                </select>
-                <input type="text" name="sa2" class="answer-input js-answer-2" placeholder="Input your answer" required maxlength="100">
-              </div>
-              <div class="flex-row">
-                <select name="sq3" required class="select-security-question js-question-3">
-                  <option value="">
-                    Security question #3
-                  </option>
-                  <option value="What was your childhood nickname?">
-                    What was your childhood nickname?
-                  </option>
-                  <option value="What is the first name of your bestfriend in high school?">
-                    What is the first name of your bestfriend in high school?
-                  </option>
-                  <option value="In what city were you born?">
-                    In what city were you born?
-                  </option>
-                  <option value="What is the name of your favorite pet?">
-                    What is the name of your favorite pet?
-                  </option>
-                  <option value="What is the name of the street where you grew up?">
-                    What is the name of the street where you grew up?
-                  </option>
-                  <option value="What is your mother's maiden name?">
-                    What is your mother's maiden name?
-                  </option>
-                  <option value="What high school did you attend?">
-                    What high school did you attend?
-                  </option>
-                  <option value="What is your date of birth?">
-                    What is your date of birth?
-                  </option>
-                  <option value="Who is your favorite superhero?">
-                    Who is your favorite superhero?
-                  </option>
-                  <option value="What year did you enter college?">
-                    What year did you enter college?
-                  </option>
-                  <option value="Set a code of your choice">
-                    Set a code of your choice
-                  </option>
-                </select>
-                <input type="text" name="sa3" class="answer-input js-answer-3" placeholder="Input your answer" required maxlength="100">
-              </div>
-            </div>
             <p class="error-message js-error-message"></p>						
-            <button type="submit" name="submit" class="signup-button js-signup-button">Signup</button>
+            <button type="submit" name="submit" class="submit-button js-signup-button">Signup</button>
             <div class="password-info">
               <div class="show-password">
                 <input type="checkbox" name="show-password" class="js-show-password-checkbox">
@@ -291,7 +163,6 @@
 </html>
 <?php
   if ($error_message != "") {
-    echo $_SERVER ['HTTP_REFERER'];
     echo '<script>displayError ('.'"'.$error_message.'"'.')</script>';
   }
 ?>

@@ -55,7 +55,7 @@
 					<label for="name">
 						Name:
 					</label>
-					<input type="text" name="name" value ="<?php 
+					<input class="text-input" type="text" name="name" value ="<?php 
 						if (isset ($_SESSION ['first_name']) || isset ($_SESSION ['last_name'])) {
 							echo $_SESSION ['first_name'].' '.$_SESSION ['last_name'];
 						} 
@@ -65,13 +65,13 @@
 					<label for="email">
 						Email:
 					</label>
-					<input type="email" name="email" value ="<?php if (isset ($_SESSION ['email'])) {echo $_SESSION ['email'];} ?>" required>
+					<input class="text-input" type="email" name="email" value ="<?php if (isset ($_SESSION ['email'])) {echo $_SESSION ['email'];} ?>" required>
 				</div>
 				<div>
 					<label for="message">
 						Message
 					</label>
-					<textarea name="message" rows="7" required></textarea>
+					<textarea class="text-input" name="message" rows="7" required></textarea>
 				</div>
 				<div class="submit-container">
 					<input type="submit" name="submit" value="Send Message">
@@ -120,6 +120,5 @@
 			echo '<script>alert ("Thanks for the message!\\nWe received it and will get back to you as soon as possible.")</script>';
 		}
 	?>
-	<script src="../scripts/nav-bar.js"></script>
 </body>
 </html>

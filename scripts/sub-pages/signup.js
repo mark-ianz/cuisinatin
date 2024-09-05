@@ -12,8 +12,7 @@ const SHOW_PASSWORD_LABEL = document.querySelector ('.js-show-password-label');
 
 SIGNUP_FORM.addEventListener ('submit', (event)=> {
   confirmPassword ();
-  checkSecurityQuestion ();
-  if (!(confirmPassword () && checkSecurityQuestion ())) {
+  if (!confirmPassword ()) {
     event.preventDefault ();
   }
 });
@@ -22,19 +21,6 @@ SIGNUP_FORM.addEventListener ('submit', (event)=> {
 function confirmPassword () {
   if (PASSWORD_INPUT.value !== CONFIRM_PASSWORD_INPUT.value) {
     ERROR_MESSAGE.innerText = 'Password doesn\'t match';
-    setTimeout (() => {
-      ERROR_MESSAGE.innerText = '';
-    }, 3000);
-    return false
-  }
-  else {
-    return true
-  };
-};
-
-function checkSecurityQuestion () {
-  if (QUESTION_1.value === QUESTION_2.value || QUESTION_1.value === QUESTION_3.value || QUESTION_2.value === QUESTION_3.value) {
-    ERROR_MESSAGE.innerText = 'Duplicate security question are not allowed';
     setTimeout (() => {
       ERROR_MESSAGE.innerText = '';
     }, 3000);

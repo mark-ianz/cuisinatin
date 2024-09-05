@@ -7,13 +7,14 @@ main {
   display: flex;
   justify-content: center;
   height: 100vh;
+  padding: 50px;
 }
 
 .main-container {
   display: flex;
   flex-direction: row;
   max-width: 1000px;
-  width: 95vw;
+  width: 100vw;
 }
 
 .left-side {
@@ -37,7 +38,7 @@ main {
   flex-direction: column;
   gap: 10px;
   padding: 15px;
-  width: 40%;
+  width: 100%;
 }
 
 .form-title {
@@ -58,7 +59,6 @@ main {
   color: black;
   font-size: 16px;
   outline: none;
-  padding: 7px 10px;
 }
 
 textarea {
@@ -79,4 +79,39 @@ textarea {
 
 .submit-container input:hover {
   background-color: #dfdfdf;
+}
+
+.text-input {
+  padding: 7px 10px;
+}
+
+@media (max-width: 900px) {
+  main {
+    align-items: flex-start;
+    height: auto;
+  }
+  .main-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 50px;
+  }
+  
+  .left-side {
+    padding: 0;
+    width: auto;
+  }
+
+  .left-side p {
+    width: auto;
+  }
+
+  footer {
+    display: none;
+  }
+  
+  body {
+    padding-top: 10vh;
+  }
+
 }

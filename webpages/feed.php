@@ -4,14 +4,19 @@
 	};
 
 	include_once('../connection/config.php');
-
 	$conn = connect();
 
-	$sql = "SELECT * FROM cuisines";
+	if (isset ($_SESSION ['redirect_url'])) {
+		unset ($_SESSION ['redirect_url']);
+	}
+?>
+
+<?php
+  /* GET POSTS */
+  $sql = "SELECT * FROM cuisines";
 	$cuisine = $conn->query($sql) or die($conn->error);
 	$cuisineRow = $cuisine->fetch_assoc();
-
-	
+	$total_cuisines = $cuisine->num_rows;
 ?>
 
 <!DOCTYPE html>
@@ -52,6 +57,8 @@
 						include ('./include/sort-container.php');
 					?>
 				</div>
+				<?php
+					if ($total_cuisines > 0) {?>
 				<div class="feed-list">
 					<?php
 						define('feed-card', TRUE);
@@ -62,6 +69,9 @@
 						?>
 					<?php } while ($cuisineRow = $cuisine->fetch_assoc()); ?>
 				</div>
+				<?php } else { ?>
+					<p>No posts available.</p>
+				<?php } ?>
 			</div>
 			<?php
 				define('side-content', TRUE);

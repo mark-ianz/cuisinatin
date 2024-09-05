@@ -38,10 +38,10 @@
     </div>
 
     <!-- SECTION -->
-    <div class="login-section">
+    <div class="form-container login-section">
 
       <!-- CONTAINER -->
-      <div class="login-container">
+      <div class="container login-container">
         <!-- TOP SIDE OF CONTAINER -->
         <div class="top-side">
           <div class="logo-container">
@@ -68,7 +68,7 @@
               <input type="password" name="password" class="js-password" placeholder="Password" required>
             </div>
             <p class="error-message js-error-message"></p>
-            <button type="submit" name="submit" class="login-button js-login-button">Login</button>
+            <button type="submit" name="submit" class="submit-button js-login-button">Login</button>
             <div class="password-info">
               <div class="show-password">
                 <input type="checkbox" name="show-password" class="js-show-password-checkbox">
@@ -76,7 +76,7 @@
                   Show Password
                 </label>
               </div>
-              <a href="" class="forgot-password">
+              <a href="./forgot-password.php" class="forgot-password">
                 Forgot password?
               </a>
             </div>
@@ -120,11 +120,7 @@
         $_SESSION ['email'] = $row ['email'];
         $_SESSION ['profile_pic'] = $row ['profile_pic'];
 
-        if (isset ($_SESSION ['redirect_url'])) {
-          header("Location: ".$_SESSION ['redirect_url']);
-        } else {
-          header("Location: ./feed.php");
-        }
+        echo "<script>location.href = \"./feed.php\"</script>";
       } else {
         echo '<script>displayError ("Incorrect password.")</script>';
       }

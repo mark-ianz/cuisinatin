@@ -1,5 +1,5 @@
 /* PREVENT FORM FROM SUBMITTING WHEN PRESSED ENTER KEY */
-const FORM = document.querySelector ('.main-container');
+const FORM = document.querySelector ('.js-form-container');
 FORM.addEventListener ('keydown', (event)=> {
   if (event.key === 'Enter') {
     event.preventDefault ();
@@ -27,7 +27,6 @@ function addRecipe () {
 
 function renderList () {
   RECIPE_LIST_CONTAINER.innerHTML = '';
-  RECIPE_LIST_CONTAINER.innerHTML = '<p style="font-weight:bold;">Recipes:</p><br>';
   recipeList.forEach ((value) => {
     let html =
     `
@@ -70,7 +69,6 @@ function addProcedure () {
 
 function renderProcedure () {
   PROCEDURE_LIST_CONTAINER.innerHTML = '';
-  PROCEDURE_LIST_CONTAINER.innerHTML = '<p style="font-weight:bold;">Procedures:</p>';
   procedureList.forEach ((value,index) => {
     let html =
     `

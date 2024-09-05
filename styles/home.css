@@ -51,11 +51,12 @@ body {
 main {
   align-items: center;
   color: white;
+  height: 100vh;
+  padding-top: 120px;
+
   display: flex;
   flex-direction: column;
-  height: 100vh;
   justify-content: flex-start;
-  padding-top: 120px;
 }
 
 .main-container {
@@ -163,7 +164,7 @@ main {
 @media (max-height:770px) {
   main {
     justify-content: flex-start;
-    padding-top: 50px;
+    top: 50px;
   }
 }
 

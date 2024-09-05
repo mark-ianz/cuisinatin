@@ -1,6 +1,4 @@
-
 <?php
-
   if (!isset($_SESSION)) {
     session_start();
   };
@@ -35,55 +33,11 @@
   $author = $conn->query($sql2) or die ($conn->error);
   $authorRow = $author->fetch_assoc();
 
-  /* GET AVE RATING */
-  if ($cuisineRow['total_ratings'] == 0) {
-    $aveRating = 0;
-  } else {
-    $aveRating = ($cuisineRow['total_ratings'] / $cuisineRow['user_rate_count']);
-    switch ($aveRating) {
-      case ($aveRating <= .25):
-        $aveRating = 0;
-        break;
-      case ($aveRating > .25 && $aveRating < .75):
-        $aveRating = .5;
-        break;
-      case ($aveRating > .75 && $aveRating < 1.25):
-        $aveRating = 1;
-        break;
-      case ($aveRating > 1.25 && $aveRating < 1.75):
-        $aveRating = 1.5;
-        break;
-      case ($aveRating > 1.75 && $aveRating < 2.25):
-        $aveRating = 2;
-        break;
-      case ($aveRating > 2.25 && $aveRating < 2.75):
-        $aveRating = 2.5;
-        break;
-      case ($aveRating > 2.75 && $aveRating < 3.25):
-        $aveRating = 3;
-        break;
-      case ($aveRating > 3.25 && $aveRating < 3.75):
-        $aveRating = 3.5;
-        break;
-      case ($aveRating > 3.75 && $aveRating < 4.25):
-        $aveRating = 4;
-        break;
-      case ($aveRating > 4.25 && $aveRating < 4.75):
-        $aveRating = 4.5;
-        break;
-      case ($aveRating > 4.75 && $aveRating < 5.25):
-        $aveRating = 5;
-        break;
-      default:
-        $aveRating = 5;
-    };
-  };
-
   /* MAKE THE RECIPE AS AN ARRAY */
-  $recipesArray = explode(',', $cuisineRow ['recipes']);
+  $recipesArray = explode('||', $cuisineRow ['recipes']);
 
   /* MAKE THE PROCEDURE AS AN ARRAY */
-  $proceduresArray = explode(',', $cuisineRow ['procedures']);
+  $proceduresArray = explode('||', $cuisineRow ['procedures']);
 
   /* GET TOTAL COMMENTS ON POST */
   $sql3 = "SELECT * FROM `comments` WHERE post_id = '$id'";
@@ -91,20 +45,176 @@
   $commentsRow = $comments->fetch_assoc();
   $commentCount = mysqli_num_rows($comments);
   
+  /* GET RATINGS */
+  $sql4 = "SELECT * FROM `ratings` WHERE post_id = '$id'";
+  $ratings= $conn->query($sql4) or die ($conn->error);
+  $ratingsRow = $ratings->fetch_assoc();
+  $ratingsCount = $ratings->num_rows;
+
+  /* GET AVE RATING */
+  $sql5 = "SELECT AVG(rating) FROM ratings WHERE post_id = '$id';";
+
+  $query = $conn->query($sql5) or die ($conn->error);
+  $aveArr = $query->fetch_assoc();
+  $aveRating = $aveArr ['AVG(rating)'];
+  
+  if ($ratingsCount == 0) {
+    $aveRating = 0.1;
+  }
+  switch ($aveRating) {
+    case ($aveRating <= .25):
+      $aveRating = 0;
+      break;
+    case ($aveRating > .25 && $aveRating < .75):
+      $aveRating = .5;
+      break;
+    case ($aveRating > .75 && $aveRating < 1.25):
+      $aveRating = 1;
+      break;
+    case ($aveRating > 1.25 && $aveRating < 1.75):
+      $aveRating = 1.5;
+      break;
+    case ($aveRating > 1.75 && $aveRating < 2.25):
+      $aveRating = 2;
+      break;
+    case ($aveRating > 2.25 && $aveRating < 2.75):
+      $aveRating = 2.5;
+      break;
+    case ($aveRating > 2.75 && $aveRating < 3.25):
+      $aveRating = 3;
+      break;
+    case ($aveRating > 3.25 && $aveRating < 3.75):
+      $aveRating = 3.5;
+      break;
+    case ($aveRating > 3.75 && $aveRating < 4.25):
+      $aveRating = 4;
+      break;
+    case ($aveRating > 4.25 && $aveRating < 4.75):
+      $aveRating = 4.5;
+      break;
+    case ($aveRating > 4.75 && $aveRating < 5.25):
+      $aveRating = 5;
+      break;
+    default:
+      $aveRating = 5;
+  };
 ?>
 
+<!-- ADD COMMENT  -->
 <?php
   if (isset ($_POST ['submit'])) {
     if (isset ($_SESSION ['user_id'])) {
       $session_id = $_SESSION ['user_id'];
       $comment = addslashes($_POST ['comment']); 
       trim($comment);
-      $sql = "INSERT INTO `comments` (`comment_id`, `post_id`, `commenter_id`, `comment`) 
-        VALUES (NULL, '$id', '$session_id', '$comment');";
+
+      date_default_timezone_set('Asia/Manila');
+      // Create a new DateTime object representing the current date and time
+      $current_datetime = new DateTime();
+
+      // Get the current time as a formatted string
+      $current_time = $current_datetime->format("Y-m-d H:i:s");
+
+      $sql = "INSERT INTO `comments` (`comment_id`, `post_id`, `commenter_id`, `comment`, `date_commented`) 
+        VALUES (NULL, '$id', '$session_id', '$comment', '$current_time');";
       $conn->query($sql) or die ($conn->error);
       header("Location: ./posts.php?id=".$id);
     }
   };
+?>
+
+<!-- SUBMIT RATING -->
+<?php
+  if (isset ($_POST ['rating-submit'])) {
+    $rating = $_POST ['rating'];
+    $userID = $_SESSION ['user_id'];
+    $sql = "INSERT INTO `ratings` (`rating_id`, `post_id`, `user_id`, `rating`) 
+      VALUES (NULL, '$id', '$userID', '$rating');";
+
+    $conn->query($sql) or die ($conn->error);
+
+    $sql = "UPDATE `cuisines` SET `total_ratings` = total_ratings + '$rating', `user_rate_count` = user_rate_count + '1'
+      WHERE `cuisines`.`cuisine_id` = '$id'";
+    $conn->query($sql) or die ($conn->error);
+    header("Location: ".$_SERVER ['REQUEST_URI']);
+  }
+?>
+
+<!-- CHECK IF USER ALREADY RATED -->
+<?php
+  $userID = null;
+  if (isset ($_SESSION ['user_id'])) {
+    $userID = $_SESSION ['user_id'];
+  } else {
+    $userID = 0;
+  }
+
+  $sql = "SELECT * FROM ratings WHERE user_id = '$userID' AND post_id = '$id'";
+  $query = $conn->query($sql) or die ($conn->error);
+  $userRated = $query->num_rows;
+  $already_rated = false;
+  if ($userRated > 0) {
+    $already_rated = true;
+  }
+?>
+<!-- SUBMIT LIKE -->
+
+<?php
+  if (isset ($_POST ['like-submit'])) {
+    $userID = $_SESSION ['user_id'];
+    $sql = "INSERT INTO `likes` (`like_id`, `post_id`, `user_id`, `amount`) 
+    VALUES (NULL, '$id', '$userID', 1)";
+
+    $conn->query($sql) or die ($conn->error);
+
+    $sql = "UPDATE `users` SET `likes` = likes + 1 WHERE `user_id` = '$authorID'";
+    $conn->query($sql) or die ($conn->error);
+
+    header("Location: ".$_SERVER ['REQUEST_URI']);
+  }
+?>
+
+<?php
+  $sql = "SELECT sum(amount) as 'total_likes' FROM likes WHERE post_id = '$id'";
+  $query = $conn->query($sql) or die ($conn->error);
+  $data = $query->fetch_assoc();
+  $post_likes = $data ['total_likes'];
+  if (!isset ($post_likes)) {
+    $post_likes = 0;
+  };
+?>
+
+<!-- CHECK IF USER ALREADY LIKED -->
+<?php
+  $userID = null;
+  if (isset ($_SESSION ['user_id'])) {
+    $userID = $_SESSION ['user_id'];
+  } else {
+    $userID = 0;
+  }
+
+  $sql = "SELECT * FROM likes WHERE user_id = '$userID' AND post_id = '$id'";
+  $query = $conn->query($sql) or die ($conn->error);
+  $userRated = $query->num_rows;
+  $already_liked = false;
+  if ($userRated > 0) {
+    $already_liked = true;
+  }
+?>
+
+<!-- SUBMIT UNLIKE -->
+<?php
+  if (isset ($_POST ['unlike-submit'])) {
+    $userID = $_SESSION ['user_id'];
+    $sql = "DELETE FROM likes WHERE `user_id` = $userID";
+
+    $conn->query($sql) or die ($conn->error);
+
+    $sql = "UPDATE `users` SET `likes` = likes - 1 WHERE `users`.`user_id` = '$authorID'";
+    $conn->query($sql) or die ($conn->error);
+
+    header("Location: ".$_SERVER ['REQUEST_URI']);
+  }
 ?>
 
 <!DOCTYPE html>
@@ -154,7 +264,7 @@
           </div>
         </div>
         <div class="image-container">
-          <img src="../<?php echo $cuisineRow ['cuisine_image'] ?>" class="cuisine-image">
+          <img src="../<?php echo $cuisineRow ['cuisine_image'] ?>" class="cuisine-image js-cuisine-image">
         </div>
         <div class="bottom-side">
           <div class="bottom-side-left">
@@ -167,11 +277,71 @@
               </p>
               <img src="../images/ratings/rating-<?php echo ($aveRating * 10); ?>.png" class="rating-image">
               <p class="user-rated">
-                <?php echo $cuisineRow ['user_rate_count'] ?> rating(s)
+                <?php echo $ratingsCount ?> rating(s)
               </p>
             </div>
           </div>
-          
+          <div class="bottom-side-right">
+            <?php
+              if ($already_rated == false) { ?>
+              <form class="rating-form" action="./posts.php?id=<?php echo $id ?>" method="post">
+                <label for="rating">
+                  Rate:
+                </label>
+                <select name="rating" class="rating-select">
+                  <?php generateSelect(5)?>
+                  <?php generateSelect(4)?>
+                  <?php generateSelect(3)?>
+                  <?php generateSelect(2)?>
+                  <?php generateSelect(1)?>
+                </select>
+                <button type="<?php if (!isset ($_SESSION ['user_id'])) {
+                    echo "button";
+                  } else {
+                    echo "submit";
+                  }?>" name="rating-submit" class="submit-rating 
+                  <?php if (!isset ($_SESSION ['user_id'])) {
+                    echo "js-displayModal";
+                  }?>">Submit
+                </button>
+              </form>
+            <?php } else { ?>
+              <p class="user-rate">
+                <?php echo $ratingsRow ['rating'] ?>/5 stars
+              </p>
+            <?php } ?>
+            <?php
+              if (!$already_liked) {
+            ?>
+              <form class="like-form" action="./posts.php?id=<?php echo $id ?>" method="post">
+                <button type="<?php if (!isset ($_SESSION ['user_id'])) {
+                  echo "button";
+                  } else {
+                    echo "submit";
+                  }?>" name="like-submit" class="like-button 
+                    <?php if (!isset ($_SESSION ['user_id'])) {
+                      echo "js-displayModal";
+                    }?>">
+                    <img src="../images/heart-regular.svg" class="like" >
+                </button>
+                <?php echo $post_likes ?>
+              </form>
+            <?php } else { ?>
+              <form class="like-form" action="./posts.php?id=<?php echo $id ?>" method="post">
+                <button type="<?php if (!isset ($_SESSION ['user_id'])) {
+                  echo "button";
+                  } else {
+                    echo "submit";
+                  }?>" name="unlike-submit" class="like-button 
+                    <?php if (!isset ($_SESSION ['user_id'])) {
+                      echo "js-displayModal";
+                    }?>">
+                    <img src="../images/heart-solid.svg" class="like" >
+                </button>
+                <?php echo $post_likes ?>
+              </form>
+            <?php } ?>
+          </div>
         </div>
       </div>
       <div class="right-container">
@@ -233,7 +403,7 @@
         </div>
       </div>
       <a href="./feed.php">
-        <div class="close-button">
+        <div class="close-button js-history-back">
           X
         </div>
       </a>
@@ -250,16 +420,29 @@
             $sql = "SELECT * FROM users WHERE user_id = '$commenterID'";
             $user = $conn->query($sql) or die ($conn->error);
             $userRow = $user->fetch_assoc();
+            if ($user->num_rows <= 0) {
+              $deletedUser = true;
+            }
           ?>
           <div class="card">
-            <a href="./users.php?id=<?php echo $userRow['user_id'] ?>">
-              <img src="../<?php echo $userRow['profile_pic'] ?>" alt="" class="author-profile">
-            </a>
+            <?php if (!$deletedUser) { ?>
+              <a href="./users.php?id=<?php echo $userRow['user_id'] ?>">
+                <img src="../<?php echo $userRow['profile_pic'] ?>" alt="User Profile Picture" class="author-profile">
+              </a>
+            <?php } else { ?>
+              <img src="../images/author-profile/default.webp" alt="User Profile Picture" class="author-profile">
+            <?php } ?>
             <div class="comment-info">
               <div>
-                <a href="./users.php?id=<?php echo $userRow['user_id'] ?>" class="commenter-name">
-                  <?php echo $userRow ['first_name'].' '.$userRow ['last_name'] ?>
-                </a>
+                <?php if (!$deletedUser) { ?>
+                  <a href="./users.php?id=<?php echo $userRow['user_id'] ?>" class="commenter-name">
+                    <?php echo $userRow ['first_name'].' '.$userRow ['last_name'] ?>
+                  </a>
+                <?php } else { ?>
+                  <p class="commenter-name">
+                    Deleted User
+                  </p>
+                <?php } ?>
                 <p class="date-commented">
                   <?php echo formatDateTime($commentsRow['date_commented'])?>
                 </p>
@@ -303,6 +486,14 @@
         <a href="<?php echo $_SERVER ['REQUEST_URI'] ?>" class="comment-close-button">
           <p>x</p>
         </a>
+      </div>
+    </div>
+    <div class="cuisine-image-modal-bg js-cuisine-image-modal-bg">
+      <div class="image-modal-container ">
+        <img src="../<?php echo $cuisineRow ['cuisine_image'] ?>" class="zoom-cuisine-image">
+        <div class="close-button image-close-button js-image-cb">
+          <p>x</p>
+        </div>
       </div>
     </div>
   </main>

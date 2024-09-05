@@ -48,3 +48,35 @@ function preventSubmit () {
 ADD_COMMENT.addEventListener ('submit', ()=> {
   preventSubmit ();
 })
+
+
+const DISPLAY_MODAL = document.querySelectorAll ('.js-displayModal');
+DISPLAY_MODAL.forEach ((button)=> {
+  button.addEventListener ('click', displayModal);
+})
+
+/* VIEW CUISINE IMAGE */
+const CUISINE_IMAGE_MODAL = document.querySelector ('.js-cuisine-image-modal-bg');
+const CUISINE_IMAGE = document.querySelector ('.js-cuisine-image');
+const IMAGE_CB = document.querySelector ('.js-image-cb');
+
+CUISINE_IMAGE.addEventListener ('click',viewImage);
+IMAGE_CB.addEventListener ('click',closeImage);
+
+
+function viewImage () {
+  CUISINE_IMAGE_MODAL.style.display = "flex";
+}
+
+function closeImage () {
+  CUISINE_IMAGE_MODAL.style.display = "none";
+}
+
+const HISTORY_BACK = document.querySelectorAll ('.js-history-back');
+
+HISTORY_BACK.forEach ((button)=> {
+  button.addEventListener ('click', ()=> {
+    history.back ();
+  })
+})
+

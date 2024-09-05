@@ -11,6 +11,7 @@
 
   $user = $conn->query($sql) or die ($conn->error);
   $row = $user->fetch_assoc();
+  $total_users = $user->num_rows;
 ?>
 
 <div class="side-content">
@@ -49,7 +50,7 @@
       <div class="hr"></div>
       <div>
         <?php if (isset($_SESSION['user_id'])) { ?>
-          <a href="../webpages/add-recipe.html">
+          <a href="./add-recipe.php">
             <button class="side-content-create-post">
               Create a Post
             </button>
@@ -71,35 +72,42 @@
       </div>
       <ul class="author-list">
         <?php
-          $i = 1;
-          do {?>
-          <li>
-            <?php
-              if ($i > 3) {
-                exit;
-              }
-              if ($i == 1) {
-                $medal = 'gold';
-              } else if ($i == 2) {
-                $medal = 'silver';
-              } else {
-                $medal = 'bronze';
-              }
-            ?>
-            <a href="users.php?id=<?php echo $row ['user_id'] ?>" class="author-container">
-            <img src="../images/<?php echo $medal ?>-medal.svg" class="ranking">
-              <img src="../<?php echo $row ['profile_pic'] ?>" class="author-picture">
-              <div class="author-stats">
-                  <p class="author-name">
-                      <?php echo $row['first_name'].' '.$row['last_name'] ?>
-                  </p>
-                  <p>
-                      <?php echo $row['likes'].' likes' ?>
-                  </p>
-              </div>
-            </a>
-          </li>
-        <?php $i++; } while ($row = $user->fetch_assoc()); ?>
+          if ($total_users > 0) {?>
+          <?php
+            $i = 1;
+            do {?>
+            <li>
+              <?php
+                if ($i > 3) {
+                  exit;
+                }
+                if ($i == 1) {
+                  $medal = 'gold';
+                } else if ($i == 2) {
+                  $medal = 'silver';
+                } else {
+                  $medal = 'bronze';
+                }
+              ?>
+              <a href="users.php?id=<?php echo $row ['user_id'] ?>" class="author-container">
+              <img src="../images/<?php echo $medal ?>-medal.svg" class="ranking">
+                <img src="../<?php echo $row ['profile_pic'] ?>" class="author-picture">
+                <div class="author-stats">
+                    <p class="author-name">
+                        <?php echo $row['first_name'].' '.$row['last_name'] ?>
+                    </p>
+                    <p>
+                        <?php echo $row['likes'].' likes' ?>
+                    </p>
+                </div>
+              </a>
+            </li>
+          <?php $i++; } while ($row = $user->fetch_assoc()); ?>
+        <?php } else { ?>
+          <p>
+            No users found.
+          </p>
+        <?php } ?>
       </ul>
     </div>
   </div>

@@ -31,7 +31,7 @@ if (!isset($_SESSION)) {
 	?>
 	<main>
 		<div class="main-container">
-			<div class="content">
+			<div class="content cn-1">
 				<div class="image-container first">
 					<img src="../images/fork-knife-svgrepo-com.svg">
 				</div>
@@ -44,7 +44,7 @@ if (!isset($_SESSION)) {
 					</p>
 				</div>
 			</div>
-			<div class="content">
+			<div class="content cn-2">
 				<div class="image-container second">
 					<img src="../images/data-cloud-svgrepo-com.svg">
 				</div>
@@ -57,7 +57,7 @@ if (!isset($_SESSION)) {
 					</p>
 				</div>
 			</div>
-			<div class="content">
+			<div class="content cn-3">
 				<div class="image-container third">
 					<img src="../images/collaborate-svgrepo-com.svg">
 				</div>

@@ -8,6 +8,7 @@ include_once('../connection/config.php');
 $conn = connect();
 $sort = $_GET ['sort'];
 
+
 switch ($sort) {
   case 'best':
     $sql = "SELECT * FROM cuisines ORDER BY likes + total_ratings DESC";

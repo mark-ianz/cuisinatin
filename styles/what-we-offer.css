@@ -1,7 +1,7 @@
 body {
   display: flex;
   justify-content: center;
-  padding-top: 190px;
+  padding: 190px;
 }
 
 .main-container {
@@ -56,4 +56,18 @@ body {
 
 .content-title {
   font-weight: bold;
+}
+
+@media (max-width: 1170px) {
+  .main-container {
+    flex-direction: column;
+  }
+  .content {
+    width: 80vw;
+  }
+
+  footer {
+    display: none;
+  }
+  
 }

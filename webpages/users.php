@@ -25,6 +25,8 @@
   $sql = "SELECT * FROM cuisines WHERE author_id = '$id'";
   $cuisines = $conn->query($sql) or die($conn->error);
   $cuisineRow = $cuisines->fetch_assoc();
+
+  $foundPosts = $cuisines->num_rows;
 ?>
 
 <!DOCTYPE html>
@@ -123,10 +125,10 @@
               <img src="../images//location.svg" class="location-logo">
                 <!--  -->
                   <?php if ($row ['province'] != null) { ?>
-                    <p class="title">From <span class="bold">
+                    <p class="title bold province">
                       <?php
                         echo $row ['province'];
-                      ?>, Philippines </span>
+                      ?>
                     </p>
                   <?php } else if (isset ($_SESSION ['user_id']) && $_SESSION ['user_id'] == $id) { ?>
                     <a href="./edit-users.php?id=<?php echo $id ?>" target="_blank">
@@ -150,7 +152,7 @@
         </div>
       </div>
       <div class="mc-right">
-        <p class="headline white">
+        <p class="headline white profile-name">
           <?php echo $row ['first_name'].' '.$row['last_name'] ?>'s Profile
         </p>
         <div class="about-cont js-about-cont">
@@ -177,115 +179,122 @@
           <?php } ?>
           </p>
         </div>
-        <div class="view-post-cont">
-          <p class="sub-title orange js-post-text">
-            View Posts
-          </p>
-          <img src="../images/arrow-down.svg" class="arrow arrow-down js-show-posts">
-          <img src="../images/arrow-up.svg" class="arrow arrow-up js-hide-posts">
-        </div>
-        <div class="view-content js-view-content">
-          <button class="scroll-button scroll-left js-scroll-left" type="button">
-            <img src="../images/arrow-left.svg" class="scroll-image">
-          </button>
-          <div class="card-container js-card-container">
-            <?php do { ?>
-              <div class="card js-card">
-                <div class="image-container">
-                  <a href="./posts.php?id=<?php echo $cuisineRow['cuisine_id'] ?>">
-                    <img src="../<?php echo $cuisineRow['cuisine_image'] ?>">
-                  </a>
-                </div>
-                <div class="description-container">
-                  <a href="./posts.php?id=<?php echo $cuisineRow['cuisine_id'] ?>">
-                    <div class="food-info">
-                      <div class="flex-column no-gap">
-                        <p class="food-name">
-                          <?php echo $cuisineRow['cuisine_name'] ?>
-                        </p>
-                        <div class="flex-row">
-                          <div class="rating-container">
-                            <?php /* GET AVE RATING */
-                            if ($cuisineRow['total_ratings'] == 0) {
-                              $aveRating = 0;
-                            } else {
-                              $aveRating = ($cuisineRow['total_ratings'] / $cuisineRow['user_rate_count']);
-                              switch ($aveRating) {
-                                case ($aveRating <= .25):
-                                  $aveRating = 0;
-                                  break;
-                                case ($aveRating > .25 && $aveRating < .75):
-                                  $aveRating = .5;
-                                  break;
-                                case ($aveRating > .75 && $aveRating < 1.25):
-                                  $aveRating = 1;
-                                  break;
-                                case ($aveRating > 1.25 && $aveRating < 1.75):
-                                  $aveRating = 1.5;
-                                  break;
-                                case ($aveRating > 1.75 && $aveRating < 2.25):
-                                  $aveRating = 2;
-                                  break;
-                                case ($aveRating > 2.25 && $aveRating < 2.75):
-                                  $aveRating = 2.5;
-                                  break;
-                                case ($aveRating > 2.75 && $aveRating < 3.25):
-                                  $aveRating = 3;
-                                  break;
-                                case ($aveRating > 3.25 && $aveRating < 3.75):
-                                  $aveRating = 3.5;
-                                  break;
-                                case ($aveRating > 3.75 && $aveRating < 4.25):
-                                  $aveRating = 4;
-                                  break;
-                                case ($aveRating > 4.25 && $aveRating < 4.75):
-                                  $aveRating = 4.5;
-                                  break;
-                                case ($aveRating > 4.75 && $aveRating < 5.25):
-                                  $aveRating = 5;
-                                  break;
-                                default:
-                                  $aveRating = 5;
-                              };
-                            }
-                            ?>
-                            <img src="../images/ratings/rating-<?php echo ($aveRating * 10); ?>.png" class="rating">
+        <?php if ($foundPosts != 0) { ?>
+          <div class="view-post-cont">
+            <p class="sub-title orange js-post-text">
+              View Posts
+            </p>
+            <img src="../images/arrow-down.svg" class="arrow arrow-down js-show-posts">
+            <img src="../images/arrow-up.svg" class="arrow arrow-up js-hide-posts">
+          </div>
+          <div class="view-content js-view-content">
+            <button class="scroll-button scroll-left js-scroll-left" type="button">
+              <img src="../images/arrow-left.svg" class="scroll-image">
+            </button>
+            <div class="card-container js-card-container">
+              <?php do { ?>
+                <div class="card js-card">
+                  <div class="image-container">
+                    <a href="./posts.php?id=<?php echo $cuisineRow['cuisine_id'] ?>">
+                      <img src="../<?php echo $cuisineRow['cuisine_image'] ?>">
+                    </a>
+                  </div>
+                  <div class="description-container">
+                    <a href="./posts.php?id=<?php echo $cuisineRow['cuisine_id'] ?>">
+                      <div class="food-info">
+                        <div class="flex-column no-gap">
+                          <p class="food-name">
+                            <?php echo $cuisineRow['cuisine_name'] ?>
+                          </p>
+                          <div class="flex-row">
+                            <div class="rating-container">
+                              <?php /* GET AVE RATING */
+                              if ($cuisineRow['total_ratings'] == 0) {
+                                $aveRating = 0;
+                              } else {
+                                $aveRating = ($cuisineRow['total_ratings'] / $cuisineRow['user_rate_count']);
+                                switch ($aveRating) {
+                                  case ($aveRating <= .25):
+                                    $aveRating = 0;
+                                    break;
+                                  case ($aveRating > .25 && $aveRating < .75):
+                                    $aveRating = .5;
+                                    break;
+                                  case ($aveRating > .75 && $aveRating < 1.25):
+                                    $aveRating = 1;
+                                    break;
+                                  case ($aveRating > 1.25 && $aveRating < 1.75):
+                                    $aveRating = 1.5;
+                                    break;
+                                  case ($aveRating > 1.75 && $aveRating < 2.25):
+                                    $aveRating = 2;
+                                    break;
+                                  case ($aveRating > 2.25 && $aveRating < 2.75):
+                                    $aveRating = 2.5;
+                                    break;
+                                  case ($aveRating > 2.75 && $aveRating < 3.25):
+                                    $aveRating = 3;
+                                    break;
+                                  case ($aveRating > 3.25 && $aveRating < 3.75):
+                                    $aveRating = 3.5;
+                                    break;
+                                  case ($aveRating > 3.75 && $aveRating < 4.25):
+                                    $aveRating = 4;
+                                    break;
+                                  case ($aveRating > 4.25 && $aveRating < 4.75):
+                                    $aveRating = 4.5;
+                                    break;
+                                  case ($aveRating > 4.75 && $aveRating < 5.25):
+                                    $aveRating = 5;
+                                    break;
+                                  default:
+                                    $aveRating = 5;
+                                };
+                              }
+                              ?>
+                              <img src="../images/ratings/rating-<?php echo ($aveRating * 10); ?>.png" class="rating">
+                            </div>
+                            <p class="counter"><?php echo $cuisineRow['total_ratings'] ?></p>
                           </div>
-                          <p class="counter"><?php echo $cuisineRow['total_ratings'] ?></p>
+                        </div>
+                        <div class="flex-column likes gap-10">
+                          <?php
+                            $cuisineID = $cuisineRow ['cuisine_id'];
+                            $sql = "SELECT * FROM `comments` WHERE post_id = '$cuisineID'";
+                            $comments= $conn->query($sql) or die ($conn->error);
+                            $commentsRow = $comments->fetch_assoc();
+                            $commentCount = mysqli_num_rows($comments);
+                          ?>
+                          <p class="counter">
+                            <?php echo $cuisineRow['likes']?> <img src="../images/heart-regular.svg" class="px-15 counter-img">
+                          </p>
+                          <p class="counter">
+                            <?php echo $commentCount ?> <img src="../images/comment-regular.svg" class="px-15 counter-img">
+                          </p>
                         </div>
                       </div>
-                      <div class="flex-column likes gap-10">
-                        <?php
-                          $cuisineID = $cuisineRow ['cuisine_id'];
-                          $sql = "SELECT * FROM `comments` WHERE post_id = '$cuisineID'";
-                          $comments= $conn->query($sql) or die ($conn->error);
-                          $commentsRow = $comments->fetch_assoc();
-                          $commentCount = mysqli_num_rows($comments);
-                        ?>
-                        <p class="counter">
-                          <?php echo $cuisineRow['likes']?> <img src="../images/heart-regular.svg" class="px-15 counter-img">
-                        </p>
-                        <p class="counter">
-                          <?php echo $commentCount ?> <img src="../images/comment-regular.svg" class="px-15 counter-img">
-                        </p>
-                      </div>
+                    </a>
+                    <div class="author-info">
+                      <p>
+                        Posted on:
+                        <?php echo date_format(date_create($cuisineRow ['date_posted']) ,'F d, Y') ?>
+                      </p>
                     </div>
-                  </a>
-                  <div class="author-info">
-                    <p>
-                      Posted on:
-                      <?php echo date_format(date_create($cuisineRow ['date_posted']) ,'F d, Y') ?>
-                    </p>
                   </div>
                 </div>
-              </div>
-            <?php } while ($cuisineRow = $cuisines->fetch_assoc()) ?>
+              <?php } while ($cuisineRow = $cuisines->fetch_assoc()) ?>
+            </div>
+            <button class="scroll-button scroll-right js-scroll-right" type="button">
+              <img src="../images/arrow-right.svg" class="scroll-image">
+            </button>
           </div>
-          <button class="scroll-button scroll-right js-scroll-right" type="button">
-            <img src="../images/arrow-right.svg" class="scroll-image">
-          </button>
+        <?php } else { ?>
+          <div class="view-post-cont">
+          <p class="sub-title orange js-post-text">
+            No posts.
+          </p>
         </div>
-        
+        <?php } ?>
       </div>
       <a href="<?php if (isset ($_SESSION ['redirect_url'])) {
         echo $_SESSION ['redirect_url'];} else {

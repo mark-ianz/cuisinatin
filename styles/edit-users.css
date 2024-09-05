@@ -20,6 +20,11 @@ input {
   justify-content: space-between;
 }
 
+.name-input {
+  font-size: 24px; 
+  width: 50%;
+}
+
 .upload {
   align-items: center;
   color: black;
@@ -111,10 +116,107 @@ input {
   font-size: 12px;
 }
 
+.mc-right::before {
+  content: 'Edit your profile';
+  font-size: 24px;
+}
+
 
 @media (max-height: 850px) {
-  .headline {
-    font-size: 24px;
+  .author-profile {
+    width: 150px;
+    height: 150px;
+    margin-left: -75px;
+    left: 50%;
+    bottom: -50px;
   }
 }
 
+@media (max-width:780px) {
+  .main-container {
+    flex-direction: column;
+    padding: 8vw;
+    gap: 50px;
+    max-height: none;
+  }
+
+  .main-container::before {
+    content: 'Edit your profile';
+    font-size: 24px;
+  }
+
+  .mc-right::before {
+    content: none;
+  }
+
+  .mc-left-bottom {
+    gap: 10px;
+  }
+
+  .close-button {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+@media (max-width: 550px) {
+  .name-input {
+    font-size: 22px;
+  }
+
+  .names {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width:500px) {
+  .mc-left {
+    min-width: auto;
+  }
+
+  main {
+    padding: 5vw;
+  }
+
+  .main-container {
+    padding: 50px 20px;
+  }
+
+  .user-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .scroll-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .scroll-image {
+    width: 30px;
+    height: 30px;
+  }
+
+  .scroll-left {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 100;
+  }
+
+  .scroll-right {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    z-index: 100;
+  }
+
+  .province::before {
+    display: block;
+  }
+
+  .upload {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -33,10 +33,10 @@ const SCROLL_RIGHT = document.querySelector ('.js-scroll-right');
 
 
 SCROLL_LEFT.addEventListener ('click', ()=> {
-  CARD_CONTAINER.scrollLeft -= 420;
+  CARD_CONTAINER.scrollLeft -= 350;
 });
 
 SCROLL_RIGHT.addEventListener ('click', ()=> {
-  CARD_CONTAINER.scrollLeft += 420;
+  CARD_CONTAINER.scrollLeft += 350;
 
 });
