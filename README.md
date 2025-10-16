@@ -47,3 +47,5 @@
    http://localhost/index.php/
     ```
 6. You’re good to go!
+
+> ⚠️ The database and PHP files are basic. Avoid running this on a public server.
